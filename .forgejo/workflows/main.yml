@@ -1,38 +1,169 @@
-name: Build
-
+name: Build and development release
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+enable-openid-connect: true
 
 jobs:
   build:
-    runs-on: docker
+    runs-on: ubuntu-latest
     container:
-      image: docker://data.forgejo.org/oci/node:24-bookworm
-
+      image: node:24-bookworm
     steps:
-      - name: Install Git
-        run: |
+      - run: |
+          set -eu
           apt-get update
           apt-get install --yes --no-install-recommends git
-
-      - name: Check out repository
-        uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-
-      - name: Set up Temurin JDK 25
-        uses: https://data.forgejo.org/actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880
+      - uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Select repository Java
+        run: |
+          set -eu
+          case "$GITHUB_REPOSITORY" in
+            */LoraxCustomTrees) echo 'BUILD_JAVA=25' >> "$GITHUB_ENV" ;;
+            */DropsOverhaul) echo 'BUILD_JAVA=21' >> "$GITHUB_ENV" ;;
+            *) echo 'Unsupported repository' >&2; exit 1 ;;
+          esac
+      - uses: https://data.forgejo.org/actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880
         with:
           distribution: temurin
-          java-version: '25'
-
-      - name: Build
-        run: ./gradlew build --no-daemon
-
-      - name: Upload plugin JAR
-        uses: https://data.forgejo.org/actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
+          java-version: ${{ env.BUILD_JAVA }}
+      - run: ./gradlew build --no-daemon
+      - uses: https://data.forgejo.org/actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
         with:
-          name: lorax-plugin
-          path: build/libs/*.jar
+          name: plugin
+          path: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar
+            !build/libs/*-javadoc.jar
+            !build/libs/*-tests.jar
           if-no-files-found: error
+
+  release:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    container:
+      image: node:24-bookworm
+    steps:
+      - run: |
+          set -eu
+          apt-get update
+          apt-get install --yes --no-install-recommends gnupg python3
+      # No checkout: repository build scripts never receive signing secrets.
+      - uses: https://data.forgejo.org/actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a
+        with:
+          name: plugin
+          path: dist
+      - name: Sign and verify
+        env:
+          CI_KEY_B64: ${{ secrets.CI_KEY_B64 }}
+          CI_KEY_PASSPHRASE: ${{ secrets.CI_KEY_PASSPHRASE }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          export GNUPGHOME="$(mktemp -d)"
+          trap 'gpgconf --kill gpg-agent; rm -rf -- "$GNUPGHOME"' EXIT
+          chmod 700 "$GNUPGHOME"
+          printf '%s' "$CI_KEY_B64" | base64 --decode | gpg --batch --import
+          unset CI_KEY_B64
+          cd dist
+          shopt -s nullglob
+          jars=(*.jar)
+          ((${#jars[@]})) || { echo 'No plugin JARs received' >&2; exit 1; }
+          for jar in "${jars[@]}"; do
+            [[ -f "$jar" && ! -L "$jar" && "$jar" != *$'\n'* ]] || exit 1
+          done
+          sha256sum -- "${jars[@]}" > SHA256SUMS
+          for file in "${jars[@]}" SHA256SUMS; do
+            printf '%s\n' "$CI_KEY_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --armor --detach-sign -- "$file"
+            gpg --batch --verify "$file.asc" "$file"
+          done
+          sha256sum --check --strict SHA256SUMS
+      - name: Publish draft then finalize prerelease
+        env:
+          RELEASE_TOKEN: ${{ github.token }}
+          RELEASE_AUDIENCE: ${{ vars.RELEASE_AUDIENCE }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, re, urllib.request, urllib.error, urllib.parse, uuid
+          repo = os.environ['GITHUB_REPOSITORY']
+          sha = os.environ['GITHUB_SHA']
+          assert re.fullmatch(r'[0-9a-f]{40}', sha)
+          base = os.environ['GITHUB_API_URL'].rstrip('/') + '/repos/' + '/'.join(urllib.parse.quote(p, safe='') for p in repo.split('/'))
+          assert base.startswith('https://')
+          token = os.environ['RELEASE_TOKEN']
+          scheme = 'token'
+          audience = os.environ.get('RELEASE_AUDIENCE')
+          if audience:
+              url = os.environ['ACTIONS_ID_TOKEN_REQUEST_URL'] + '&' + urllib.parse.urlencode({'audience': audience})
+              req = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + os.environ['ACTIONS_ID_TOKEN_REQUEST_TOKEN']})
+              with urllib.request.urlopen(req) as response:
+                  token = json.load(response)['value']
+              print('::add-mask::' + token)
+              scheme = 'Bearer'
+          tag = 'build-' + sha[:12]
+          def api(method, path, body=None, content_type='application/json', missing=False, raw=False):
+              if isinstance(body, dict): body = json.dumps(body).encode()
+              request = urllib.request.Request(base + path, data=body, method=method,
+                  headers={'Authorization': scheme + ' ' + token, 'Content-Type': content_type})
+              try:
+                  with urllib.request.urlopen(request) as response:
+                      data = response.read()
+                      return data if raw else json.loads(data)
+              except urllib.error.HTTPError as error:
+                  detail = error.read().decode(errors='replace')[:2000].replace(token, '[redacted]')
+                  if error.code == 404 and missing: return None
+                  raise RuntimeError(f'{method} {path}: HTTP {error.code}: {detail}. Check Authorized Integration repository/release/tag capabilities; any draft remains unpublished.') from None
+          api('GET', '')
+          branch = api('GET', '/branches/main')
+          assert branch.get('protected'), 'Protect main before enabling releases'
+          files = sorted(pathlib.Path('dist').iterdir())
+          assert files and all(p.is_file() and not p.is_symlink() and re.fullmatch(r'[A-Za-z0-9_.+-]+', p.name) for p in files)
+          tagpath = '/tags/' + urllib.parse.quote(tag, safe='')
+          existing_tag = api('GET', tagpath, missing=True)
+          if existing_tag:
+              assert existing_tag['commit']['sha'] == sha, 'Tag collision: refusing to retarget'
+          else:
+              api('POST', '/tags', {'tag_name': tag, 'target': sha})
+          assert api('GET', tagpath)['commit']['sha'] == sha
+          release = api('GET', '/releases/tags/' + tag, missing=True)
+          if release:
+              assert ('Commit: ' + sha) in release['body'], 'Existing release commit mismatch'
+              assert release['prerelease'], 'Existing release is not a development prerelease'
+          else:
+              java = '25' if repo.endswith('/LoraxCustomTrees') else '21'
+              release = api('POST', '/releases', {'tag_name': tag, 'target_commitish': sha,
+                  'name': 'Development Build ' + sha[:12], 'draft': True, 'prerelease': True,
+                  'body': f'Repository: {repo}\nCommit: {sha}\nBranch: main\nBuild system: Gradle\nJava: {java}'})
+          rid = release['id']
+          print(f'Inspecting release {rid}; failures leave draft state unchanged')
+          assets = api('GET', f'/releases/{rid}/assets')
+          inventory = {a['name']: a for a in assets}
+          assert len(inventory) == len(assets)
+          assert set(inventory) <= {p.name for p in files}, 'Unexpected release assets'
+          for file in files:
+              if file.name in inventory:
+                  remote = api('GET', f"/releases/{rid}/assets/{inventory[file.name]['id']}", raw=True)
+                  # Forgejo attachment endpoint returns metadata; download the actual content.
+                  metadata = json.loads(remote)
+                  url = metadata['browser_download_url']
+                  assert urllib.parse.urlsplit(url).netloc == urllib.parse.urlsplit(base).netloc
+                  req = urllib.request.Request(url, headers={'Authorization': scheme + ' ' + token})
+                  with urllib.request.urlopen(req) as response: data = response.read()
+                  assert data == file.read_bytes(), 'Existing asset differs (including signature): ' + file.name
+                  continue
+              assert release['draft'], 'Completed release missing assets; manual review required'
+              boundary = uuid.uuid4().hex
+              data = (f'--{boundary}\r\nContent-Disposition: form-data; name="attachment"; filename="{file.name}"\r\nContent-Type: application/octet-stream\r\n\r\n').encode() + file.read_bytes() + f'\r\n--{boundary}--\r\n'.encode()
+              api('POST', f'/releases/{rid}/assets', data, 'multipart/form-data; boundary=' + boundary)
+          assert {a['name'] for a in api('GET', f'/releases/{rid}/assets')} == {p.name for p in files}
+          if release['draft']:
+              api('PATCH', f'/releases/{rid}', {'draft': False, 'prerelease': True})
+          completed = api('GET', f'/releases/{rid}')
+          assert completed['prerelease'] and not completed['draft']
+          print(f'Published and verified {tag}')
+          PY
