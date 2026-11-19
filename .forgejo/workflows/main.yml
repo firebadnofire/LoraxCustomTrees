@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: docker
+    container:
+      image: docker://data.forgejo.org/oci/node:24-bookworm
+
+    steps:
+      - name: Install Git
+        run: |
+          apt-get update
+          apt-get install --yes --no-install-recommends git
+
+      - name: Check out repository
+        uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Set up Temurin JDK 25
+        uses: https://data.forgejo.org/actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Build
+        run: ./gradlew build --no-daemon
+
+      - name: Upload plugin JAR
+        uses: https://data.forgejo.org/actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
+        with:
+          name: lorax-plugin
+          path: build/libs/*.jar
+          if-no-files-found: error
