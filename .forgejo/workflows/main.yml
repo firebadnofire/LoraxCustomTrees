@@ -90,6 +90,21 @@ jobs:
         run: |
           python3 - <<'PY'
           import hashlib, json, os, pathlib, re, urllib.request, urllib.error, urllib.parse, uuid
+          client_headers = {'User-Agent': 'ForgejoActions-ReleasePublisher/1.0', 'Accept': 'application/json'}
+          stage = 'repository authentication'
+          def open_request(request, missing=False):
+              try:
+                  return urllib.request.urlopen(request)
+              except urllib.error.HTTPError as error:
+                  if error.code == 404 and missing:
+                      return None
+                  detail = error.read().decode(errors='replace')[:2000]
+                  for secret in (token, os.environ.get('ACTIONS_ID_TOKEN_REQUEST_TOKEN', '')):
+                      if secret: detail = detail.replace(secret, '[redacted]')
+                  metadata = {key: error.headers.get(key) for key in ('Server', 'Content-Type', 'CF-Ray') if error.headers.get(key)}
+                  origin = 'Cloudflare edge' if '1010' in detail else 'Forgejo or upstream (Cloudflare may proxy the response)'
+                  endpoint = urllib.parse.urlsplit(request.full_url).path
+                  raise RuntimeError(f'Stage: {stage}; {request.get_method()} {endpoint}: HTTP {error.code}; origin: {origin}; headers: {metadata}; body: {detail}. If Cloudflare blocks this identified client, review the matching edge event for the trusted runner; do not change token permissions based on error 1010.') from None
           repo = os.environ['GITHUB_REPOSITORY']
           sha = os.environ['GITHUB_SHA']
           assert re.fullmatch(r'[0-9a-f]{40}', sha)
@@ -100,8 +115,9 @@ jobs:
           audience = os.environ.get('RELEASE_AUDIENCE')
           if audience:
               url = os.environ['ACTIONS_ID_TOKEN_REQUEST_URL'] + '&' + urllib.parse.urlencode({'audience': audience})
-              req = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + os.environ['ACTIONS_ID_TOKEN_REQUEST_TOKEN']})
-              with urllib.request.urlopen(req) as response:
+              stage = 'Authorized Integration JWT acquisition'
+              req = urllib.request.Request(url, headers={**client_headers, 'Authorization': 'Bearer ' + os.environ['ACTIONS_ID_TOKEN_REQUEST_TOKEN']})
+              with open_request(req) as response:
                   token = json.load(response)['value']
               print('::add-mask::' + token)
               scheme = 'Bearer'
@@ -109,27 +125,36 @@ jobs:
           def api(method, path, body=None, content_type='application/json', missing=False, raw=False):
               if isinstance(body, dict): body = json.dumps(body).encode()
               request = urllib.request.Request(base + path, data=body, method=method,
-                  headers={'Authorization': scheme + ' ' + token, 'Content-Type': content_type})
+                  headers={**client_headers, 'Authorization': scheme + ' ' + token, 'Content-Type': content_type})
               try:
-                  with urllib.request.urlopen(request) as response:
+                  # Only explicitly expected missing resources may consume a 404.
+                  response = open_request(request, missing=missing)
+                  if response is None: return None
+                  with response:
                       data = response.read()
                       return data if raw else json.loads(data)
               except urllib.error.HTTPError as error:
                   detail = error.read().decode(errors='replace')[:2000].replace(token, '[redacted]')
                   if error.code == 404 and missing: return None
-                  raise RuntimeError(f'{method} {path}: HTTP {error.code}: {detail}. Check Authorized Integration repository/release/tag capabilities; any draft remains unpublished.') from None
+                  # Reissue through the diagnostic transport for unexpected statuses.
+                  open_request(request)
+                  raise RuntimeError(f'{method} {path}: unexpected HTTP {error.code}: {detail}')
           api('GET', '')
+          stage = 'main branch protection check'
           branch = api('GET', '/branches/main')
-          assert branch.get('protected'), 'Protect main before enabling releases'
+          if not branch.get('protected'):
+              raise RuntimeError('Release stopped: main is unprotected. Configure repository Settings > Branches > branch protection for main, requiring reviewed changes. This safeguards signing credentials and published artifacts; no release was created.')
           files = sorted(pathlib.Path('dist').iterdir())
           assert files and all(p.is_file() and not p.is_symlink() and re.fullmatch(r'[A-Za-z0-9_.+-]+', p.name) for p in files)
           tagpath = '/tags/' + urllib.parse.quote(tag, safe='')
+          stage = 'tag lookup and creation'
           existing_tag = api('GET', tagpath, missing=True)
           if existing_tag:
               assert existing_tag['commit']['sha'] == sha, 'Tag collision: refusing to retarget'
           else:
               api('POST', '/tags', {'tag_name': tag, 'target': sha})
           assert api('GET', tagpath)['commit']['sha'] == sha
+          stage = 'release lookup and draft creation'
           release = api('GET', '/releases/tags/' + tag, missing=True)
           if release:
               assert ('Commit: ' + sha) in release['body'], 'Existing release commit mismatch'
@@ -146,14 +171,16 @@ jobs:
           assert len(inventory) == len(assets)
           assert set(inventory) <= {p.name for p in files}, 'Unexpected release assets'
           for file in files:
+              stage = 'asset verification/upload: ' + file.name
               if file.name in inventory:
                   remote = api('GET', f"/releases/{rid}/assets/{inventory[file.name]['id']}", raw=True)
                   # Forgejo attachment endpoint returns metadata; download the actual content.
                   metadata = json.loads(remote)
                   url = metadata['browser_download_url']
                   assert urllib.parse.urlsplit(url).netloc == urllib.parse.urlsplit(base).netloc
-                  req = urllib.request.Request(url, headers={'Authorization': scheme + ' ' + token})
-                  with urllib.request.urlopen(req) as response: data = response.read()
+                  assert urllib.parse.urlsplit(url).scheme == 'https', 'Asset download requires HTTPS'
+                  req = urllib.request.Request(url, headers={**client_headers, 'Authorization': scheme + ' ' + token})
+                  with open_request(req) as response: data = response.read()
                   assert data == file.read_bytes(), 'Existing asset differs (including signature): ' + file.name
                   continue
               assert release['draft'], 'Completed release missing assets; manual review required'
@@ -162,7 +189,9 @@ jobs:
               api('POST', f'/releases/{rid}/assets', data, 'multipart/form-data; boundary=' + boundary)
           assert {a['name'] for a in api('GET', f'/releases/{rid}/assets')} == {p.name for p in files}
           if release['draft']:
+              stage = 'prerelease finalization'
               api('PATCH', f'/releases/{rid}', {'draft': False, 'prerelease': True})
+          stage = 'completed release verification'
           completed = api('GET', f'/releases/{rid}')
           assert completed['prerelease'] and not completed['draft']
           print(f'Published and verified {tag}')
