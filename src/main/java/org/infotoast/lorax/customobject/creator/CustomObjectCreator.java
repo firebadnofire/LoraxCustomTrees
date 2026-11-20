@@ -24,14 +24,14 @@ public class CustomObjectCreator {
     int centerY;
     int centerZ;
     public CustomObjectCreator(CuboidRegion boundingBox, Vector3 center) {
-        this.minX = boundingBox.getMinimumPoint().x();
-        this.minZ = boundingBox.getMinimumPoint().z();
+        this.minX = boundingBox.getMinimumPoint().getX();
+        this.minZ = boundingBox.getMinimumPoint().getZ();
         this.minY = boundingBox.getMinimumY();
-        this.maxX = boundingBox.getMaximumPoint().x();
-        this.maxZ = boundingBox.getMaximumPoint().z();
+        this.maxX = boundingBox.getMaximumPoint().getX();
+        this.maxZ = boundingBox.getMaximumPoint().getZ();
         this.maxY = boundingBox.getMaximumY();
-        this.centerX = (int)Math.floor(center.x());
-        this.centerZ = (int)Math.floor(center.z());
+        this.centerX = (int)Math.floor(center.getX());
+        this.centerZ = (int)Math.floor(center.getZ());
         this.centerY = boundingBox.getMinimumY();
     }
 

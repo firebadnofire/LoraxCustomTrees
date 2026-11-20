@@ -1,0 +1,12 @@
+{
+  "name": "lorax-vanilla-client-probe",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Test-only unmodified Minecraft protocol joins against loopback disposable servers",
+  "dependencies": {
+    "minecraft-protocol": "1.68.0"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  }
+}

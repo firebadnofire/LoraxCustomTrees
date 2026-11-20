@@ -1,0 +1,4 @@
+name: LoraxIntegrationProbe
+version: '1'
+main: org.infotoast.lorax.spigot112.probe.LegacyProbe
+depend: [Lorax]

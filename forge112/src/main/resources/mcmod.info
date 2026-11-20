@@ -1,0 +1,11 @@
+[
+  {
+    "modid": "lorax",
+    "name": "Lorax Custom Trees",
+    "description": "Native server-side custom tree generation.",
+    "version": "${version}",
+    "mcversion": "1.12.2",
+    "authorList": ["Frank from Info Toast", "CoolScreenName"],
+    "url": "https://github.com/FrankTCA/LoraxCustomTrees"
+  }
+]

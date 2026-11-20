@@ -1,8 +1,6 @@
 package org.infotoast.lorax.customobject.datatype;
 
 import org.bukkit.block.data.BlockData;
-import org.bukkit.generator.LimitedRegion;
-import org.infotoast.lorax.WorldImproved;
 import org.infotoast.lorax.customobject.creator.CustomObjectWriter;
 import org.infotoast.lorax.customobject.exception.InvalidObjectCommandException;
 
@@ -19,39 +17,7 @@ public class CustomObjectRandomBlock implements CustomObjectItem {
         this.chances = chances;
     }
 
-    @Override
-    public void place(ObjectLocation center, int rotation, WorldImproved world, LimitedRegion reg) {
-        ObjectLocation loc = location.getLocationRotated(rotation);
-        loc = loc.getObjectLocationFromCenter(center);
-        int rand = world.getHashedRand(loc.getX(), loc.getY(), loc.getZ()).nextInt(100);
-        int chanceCount = 0;
-        for (int i = 0; i < blocks.length; i++) {
-            chanceCount += chances[i];
-            if (rand < chanceCount) {
-                if (reg.isInRegion(loc.getX(), loc.getY(), loc.getZ())) {
-                    reg.setBlockData(loc.getX(), loc.getY(), loc.getZ(), blocks[i]);
-                } else {
-                    world.setMaterial(loc.getX(), loc.getY(), loc.getZ(), blocks[i]);
-                }
-                return;
-            }
-        }
-    }
 
-    @Override
-    public void place(ObjectLocation center, int rotation, WorldImproved world) {
-        ObjectLocation loc = location.getLocationRotated(rotation);
-        loc = loc.getObjectLocationFromCenter(center);
-        int rand = world.getHashedRand(loc.getX(), loc.getY(), loc.getZ()).nextInt(100);
-        int chanceCount = 0;
-        for (int i = 0; i < blocks.length; i++) {
-            chanceCount += chances[i];
-            if (rand < chanceCount) {
-                world.setMaterial(loc.getX(), loc.getY(), loc.getZ(), blocks[i]);
-                return;
-            }
-        }
-    }
 
     @Override
     public String getName() {

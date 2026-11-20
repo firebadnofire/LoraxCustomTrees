@@ -1,0 +1,2554 @@
+{
+  "scope": "Local automated integration; not human gameplay, hosted CI, or release authorization",
+  "recorded_at": "2026-11-20T02:12:59.617171Z",
+  "packaging": {
+    "distributions": [
+      {
+        "artifact": "build/libs/Lorax-6.2.jar",
+        "platform": "paper",
+        "sha256": "fc9a43ad7914c16363e37e3c719ddd9a27f482abcf258fd1047ce61654285599",
+        "payload_sha256": "cae09810310de45ac2e900e7857eb442b6115bdc923a311bee09bcf1e54d44fa",
+        "assets": 40,
+        "bytecode_major": 69,
+        "descriptor": "plugin.yml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "platform": "spigot",
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "assets": 40,
+        "bytecode_major": 61,
+        "descriptor": "plugin.yml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "spigot112/build/libs/LoraxCustomTrees-spigot-1.12.2-6.2.jar",
+        "platform": "spigot",
+        "sha256": "b54f643f74f67bd321769075da5bcf9783aa382a1c7015541ac25c823937c041",
+        "payload_sha256": "a76e3571071af6a9ce9d699b9b677c66f9490de1fc7bdf0e38def355aecf373b",
+        "assets": 40,
+        "bytecode_major": 52,
+        "descriptor": "plugin.yml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge112/build/libs/LoraxCustomTrees-forge-1.12.2-6.2.jar",
+        "platform": "forge",
+        "sha256": "94ff2c35ee91065d68ce5c20c5b31698e95c7eb892cfaff96357a7ff05debcde",
+        "payload_sha256": "a929100b8802428b36bf4723e432ab6cb5261e372d4af698792db6a36e6fa1a0",
+        "assets": 40,
+        "bytecode_major": 52,
+        "descriptor": "mcmod.info",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge12110/build/libs/LoraxCustomTrees-forge-1.21.10-6.2.jar",
+        "platform": "forge",
+        "sha256": "197c4930417ad3a3164f78d41004fdac67eda9b5361cdb121b6083a1bbc491b3",
+        "payload_sha256": "bfa7007ac8d4b295b79cd9cd06d9eaebbead43b2ee9757bfc9e3cc8472ba673f",
+        "assets": 40,
+        "bytecode_major": 65,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge120/build/libs/LoraxCustomTrees-forge-1.20-6.2.jar",
+        "platform": "forge",
+        "sha256": "0e315f38744c37d5b088a1e944951772d6c73da3e0adbd0e3b1123013f2fb00f",
+        "payload_sha256": "4c6dd159d8aefe9bb253e05afe1665cddac3caedb2fe28c47474f7c6220960a5",
+        "assets": 40,
+        "bytecode_major": 61,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge1206/build/libs/LoraxCustomTrees-forge-1.20.6-6.2.jar",
+        "platform": "forge",
+        "sha256": "326fab05f6526b9309d6a0c6f7bbd6ba10eb789b5d715fc228d10378dba3929e",
+        "payload_sha256": "3b858dc3945ca5a5d64c058b419bd1246e2a8d4fc9acd8afb3007f25b972ea3b",
+        "assets": 40,
+        "bytecode_major": 65,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge121/build/libs/LoraxCustomTrees-forge-1.21-6.2.jar",
+        "platform": "forge",
+        "sha256": "b7e6f944253bf1b0758f848638595b77a35cb19e75bfbe133e87620923d7750f",
+        "payload_sha256": "8b96643b548bffe3e08b1719de120a9e37c477c92f6950f1486d93c8f8d2de23",
+        "assets": 40,
+        "bytecode_major": 65,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge261/build/libs/LoraxCustomTrees-forge-26.1-6.2.jar",
+        "platform": "forge",
+        "sha256": "d4c38f669d2d2e4bd0ef0dfaf3973557f462fccb935cd35f1c2e7206f9063ad5",
+        "payload_sha256": "724b75224e59e313bcb67b4d290b2b452700005cf173eef60227b0c91331d78e",
+        "assets": 40,
+        "bytecode_major": 69,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge262/build/libs/LoraxCustomTrees-forge-26.2-6.2.jar",
+        "platform": "forge",
+        "sha256": "4e4230472d1306929710e66d3b06d6e9128d6ea541021ad7c6a3643cb86a3280",
+        "payload_sha256": "438b4d7fe158b1230843f1b2ece40f43cb1356c7364d4c2c228e1f005f7cb035",
+        "assets": 40,
+        "bytecode_major": 69,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      },
+      {
+        "artifact": "forge26/build/libs/LoraxCustomTrees-forge-26.3-6.2.jar",
+        "platform": "forge",
+        "sha256": "0d83a2eafbd6aa3c896779b5823c780f2a1659ce99eaa95972d36a03824e7692",
+        "payload_sha256": "9e6ed9ae4caae08e70e5ef486cd25d23a856c48ae6015e346228c7949976c926",
+        "assets": 40,
+        "bytecode_major": 69,
+        "descriptor": "META-INF/mods.toml",
+        "packaged_api": false,
+        "packaged_probe": false
+      }
+    ],
+    "payload_hash_format": "SHA256 of ordinal-sorted UTF8(entry name), NUL, SHA256(uncompressed entry bytes), excluding directory entries",
+    "checked_at": "2026-11-20T19:30:14.4339946Z"
+  },
+  "server_runs": [
+    {
+      "platform": "paper",
+      "minecraft": "26.3",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\paper263-biomes\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "probe_sha256": "b7a57972fd7e7dac6df79b4b404c1d0aeaa0335afa76782cfd2f53b73403652e",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "fc9a43ad7914c16363e37e3c719ddd9a27f482abcf258fd1047ce61654285599",
+        "payload_sha256": "cae09810310de45ac2e900e7857eb442b6115bdc923a311bee09bcf1e54d44fa",
+        "current_distribution": "build/libs/Lorax-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "Lorax-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "1c86b966b835d4803573d69760384fec1bce6d01fdbba2433cf75f030695c73c",
+        "filename": "LoraxIntegrationProbe-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "26.3",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\paper263-biomes\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 265,
+        "restart_check": true,
+        "assets": 40
+      },
+      "probe_sha256": "3852ebf629ddc8823b741fadf4813417b3f2f2afac642b79429f4356340d1231",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "fc9a43ad7914c16363e37e3c719ddd9a27f482abcf258fd1047ce61654285599",
+        "payload_sha256": "cae09810310de45ac2e900e7857eb442b6115bdc923a311bee09bcf1e54d44fa",
+        "current_distribution": "build/libs/Lorax-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "Lorax-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "1c86b966b835d4803573d69760384fec1bce6d01fdbba2433cf75f030695c73c",
+        "filename": "LoraxIntegrationProbe-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.20.1",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.20.1\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "probe_sha256": "35a7ab3fbce8672a4303e9b0e619417955588dfbe5012545b805b8a09e552dcf",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 196,
+        "time": "2023-09-21T16:59:41.322Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "773dd724469bae89d0c2075edc3d1ddc8d5b0b18",
+            "time": "2023-09-21T16:48:55Z",
+            "message": "Updated Upstream (Bukkit/CraftBukkit) (#9739)\n\nUpstream has released updates that appear to apply and compile correctly.\r\nThis update has not been tested by PaperMC and as with ANY update, please do your own testing\r\n\r\nBukkit Changes:\r\n69c7ce23 PR-990: Use Mockito instead of InvocationHandler for test mocking\r\n997de31d PR-893: Add a stream method to Registry to make it easier to use and to avoid unnecessary wrapping\r\n6a8ce581 Fix malformed javadoc in previous commit\r\n26c74f6d PR-890: Add more Sculk API (bloom, shriek, bloom event)\r\naa067abf PR-895: Load GameEvent and MusicInstrument from registry\r\n\r\nCraftBukkit Changes:\r\n78796c9de Add support for Java 21\r\nddc9a2dad SPIGOT-7475: Don't fire SculkBloomEvent during world generation\r\ncaee2311a PR-1245: Add a stream method to Registry to make it easier to use and to avoid unnecessary wrapping\r\nde421cf56 PR-1242: Add more Sculk API (bloom, shriek, bloom event)\r\n00f5a80fb PR-1252: Fix error when generating a tree in water\r\n10219df3a PR-1248: Load GameEvent and MusicInstrument from registry"
+          }
+        ],
+        "downloads": {
+          "server:mojang": {
+            "name": "paper-1.20.1-196-mojang.jar",
+            "checksums": {
+              "sha256": "67f31f691afd52a0c4ce33827fd635d0d0e86d46dec0ef6f89e1d58cd27832cf"
+            },
+            "size": 43120602,
+            "url": "https://fill-data.papermc.io/v1/objects/67f31f691afd52a0c4ce33827fd635d0d0e86d46dec0ef6f89e1d58cd27832cf/paper-1.20.1-196-mojang.jar"
+          },
+          "server:default": {
+            "name": "paper-1.20.1-196.jar",
+            "checksums": {
+              "sha256": "234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea"
+            },
+            "size": 43230582,
+            "url": "https://fill-data.papermc.io/v1/objects/234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea/paper-1.20.1-196.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.20.4",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.20.4\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 499,
+        "time": "2024-10-30T19:22:05.407Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "ba31f4128208e954d6648001724887352f71ece9",
+            "time": "2024-05-28T12:20:58Z",
+            "message": "[ci skip] Clean up paperclip build-pr workflow\n\nGracefully handle paperclip uploads to pull requests in case of build\nworkflow issues.\n"
+          },
+          {
+            "sha": "9de3f75fa2af7c47dc2ed3bcec850b9e245dda21",
+            "time": "2024-10-30T18:43:10Z",
+            "message": "Backport small fixes\n"
+          }
+        ],
+        "downloads": {
+          "server:mojang": {
+            "name": "paper-1.20.4-499-mojang.jar",
+            "checksums": {
+              "sha256": "e84aa4943cc51d7545b1c9b669bb1e0b143323d248ebb89012182f5554bc13d7"
+            },
+            "size": 42666591,
+            "url": "https://fill-data.papermc.io/v1/objects/e84aa4943cc51d7545b1c9b669bb1e0b143323d248ebb89012182f5554bc13d7/paper-1.20.4-499-mojang.jar"
+          },
+          "server:default": {
+            "name": "paper-1.20.4-499.jar",
+            "checksums": {
+              "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b"
+            },
+            "size": 42781488,
+            "url": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.20.5",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.20.5\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 22,
+        "time": "2024-04-29T03:51:31.118Z",
+        "channel": "ALPHA",
+        "commits": [
+          {
+            "sha": "8f7ac62905dbeeef1ad000a44c7dd035d4e115b0",
+            "time": "2024-04-29T03:43:50Z",
+            "message": "Validate manifest provided mapping namespace (#10612)\n\nWith plugins adopting paperweights mapping namespaces in their manifest\r\nfile in and after paper 1.20.5, incorrectly spelled namespaces\r\npreviously were simply implied as the spigot namespace.\r\n\r\nThis commit properly ensures plugin authors are using a known mapping\r\nnamespace in their manifest, avoiding down the line confusion on\r\nincorrect remapping behaviour.\r\n\r\nThe commit also fixes two incorrect log parameters."
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.20.5-22.jar",
+            "checksums": {
+              "sha256": "3cd7da2f8df92e082a501a39c674aab3c0343edd179b86f5baccaebfc9974132"
+            },
+            "size": 45593685,
+            "url": "https://fill-data.papermc.io/v1/objects/3cd7da2f8df92e082a501a39c674aab3c0343edd179b86f5baccaebfc9974132/paper-1.20.5-22.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.20.6",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.20.6\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "fbbd13337b86eca6eb058ab95d187ba2307a9154146c3f21e4092bb882a77d83",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "8fb36717dcbfb996c750f464584314585b3051012989b2393c5bbdde38ffc4c5"
+      },
+      "server_source": {
+        "id": 151,
+        "time": "2024-10-30T19:15:37.756Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "a4f0f5ccd05592dc9be040d8c17d6795baa7b1b8",
+            "time": "2024-10-30T18:57:33Z",
+            "message": "Backport small fixes\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.20.6-151.jar",
+            "checksums": {
+              "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640"
+            },
+            "size": 45826876,
+            "url": "https://fill-data.papermc.io/v1/objects/4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640/paper-1.20.6-151.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.21",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.21\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "fbbd13337b86eca6eb058ab95d187ba2307a9154146c3f21e4092bb882a77d83",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "8fb36717dcbfb996c750f464584314585b3051012989b2393c5bbdde38ffc4c5"
+      },
+      "server_source": {
+        "id": 130,
+        "time": "2024-08-10T10:04:43.605Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "b1b5d4c1e4b7c95afd5c932ca392bee66533a60c",
+            "time": "2024-08-10T09:55:08Z",
+            "message": "Check shooter in configurable projectile relative velocity patch\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.21-130.jar",
+            "checksums": {
+              "sha256": "ab9bb1afc3cea6978a0c03ce8448aa654fe8a9c4dddf341e7cbda1b0edaa73f5"
+            },
+            "size": 49049109,
+            "url": "https://fill-data.papermc.io/v1/objects/ab9bb1afc3cea6978a0c03ce8448aa654fe8a9c4dddf341e7cbda1b0edaa73f5/paper-1.21-130.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.21.10",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.21.10\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "fbbd13337b86eca6eb058ab95d187ba2307a9154146c3f21e4092bb882a77d83",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "8fb36717dcbfb996c750f464584314585b3051012989b2393c5bbdde38ffc4c5"
+      },
+      "server_source": {
+        "id": 130,
+        "time": "2026-01-04T21:00:59Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "8043efd4d0e5bdc9dd0cbc33e9e8bb49e6d8c012",
+            "time": "2026-01-04T21:00:08Z",
+            "message": "Correctly read per-world gamerule for command blocks (#13411)\n\n"
+          },
+          {
+            "sha": "2f7f1397628914e44154c326b56e5e7e9adf6721",
+            "time": "2025-12-20T23:17:03Z",
+            "message": "[ci skip] Rebuild patches\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.21.10-130.jar",
+            "checksums": {
+              "sha256": "158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53"
+            },
+            "size": 54475623,
+            "url": "https://fill-data.papermc.io/v1/objects/158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53/paper-1.21.10-130.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "1.21.11",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-1.21.11\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 132,
+        "time": "2026-05-11T11:43:09Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "c5eb0790f199da6c38d0a650e1e5cd5415b28185",
+            "time": "2026-05-11T11:41:08Z",
+            "message": "Fork friendly byte buf correctly\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.21.11-132.jar",
+            "checksums": {
+              "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba"
+            },
+            "size": 54846016,
+            "url": "https://fill-data.papermc.io/v1/objects/5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba/paper-1.21.11-132.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "26.1.1",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-26.1.1\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 29,
+        "time": "2026-04-06T17:01:17Z",
+        "channel": "ALPHA",
+        "commits": [
+          {
+            "sha": "77c0866f5f60a74f475e94612a391b22df5cefe3",
+            "time": "2026-04-06T17:00:13Z",
+            "message": "handle legacy uid in vanilla migration and always write metadata during migration\n"
+          },
+          {
+            "sha": "106a934df2f892f5895b239f80c12bf13c164657",
+            "time": "2026-04-06T05:53:15Z",
+            "message": "[ci skip] Drop stale TODO\n\nThis is no longer needed as we explicitly add the correct gen settings to the SavedDataStorage for custom dimensions in CraftServer. We no longer have multiple PrimaryLevelData, and WorldGenSettings is saved in its own file.\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-26.1.1-29.jar",
+            "checksums": {
+              "sha256": "43d08ed52c7af4e9f72769122501a5c15f99c7ace0c428a3eef040fd3f6fdbc5"
+            },
+            "size": 52896049,
+            "url": "https://fill-data.papermc.io/v1/objects/43d08ed52c7af4e9f72769122501a5c15f99c7ace0c428a3eef040fd3f6fdbc5/paper-26.1.1-29.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "26.1.2",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-26.1.2\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "probe_sha256": "35a7ab3fbce8672a4303e9b0e619417955588dfbe5012545b805b8a09e552dcf",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 74,
+        "time": "2026-07-06T16:51:09Z",
+        "channel": "STABLE",
+        "commits": [],
+        "downloads": {
+          "server:default": {
+            "name": "paper-26.1.2-74.jar",
+            "checksums": {
+              "sha256": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7"
+            },
+            "size": 52893229,
+            "url": "https://fill-data.papermc.io/v1/objects/1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7/paper-26.1.2-74.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "paper",
+      "minecraft": "26.2",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\matrix-26.2\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "b060985aa8120e65f375d13810600cec93515563c993f085ea259977936a29e1",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "5d08a091c69a4ecb0478e9d207dbab304bef51efa96a4be94e62c0b6d1575021"
+      },
+      "server_source": {
+        "id": 135,
+        "time": "2026-10-25T11:18:00Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "e4d6dfd1597968e78a3d405dce73d1d1f14a4b81",
+            "time": "2026-10-25T11:17:43Z",
+            "message": "Update publishing workflow\n"
+          },
+          {
+            "sha": "91693c3ec1f01c39f65c3c3bd05f53cf45c2cbb7",
+            "time": "2026-10-23T17:12:57Z",
+            "message": "Fix equipment check\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-26.2-135.jar",
+            "checksums": {
+              "sha256": "ef3dbc68b013deafdbbee3bebf1ba351671ebcda94a8f136809b7532d5ba2fe1"
+            },
+            "size": 64525370,
+            "url": "https://fill-data.papermc.io/v1/objects/ef3dbc68b013deafdbbee3bebf1ba351671ebcda94a8f136809b7532d5ba2fe1/paper-26.2-135.jar"
+          }
+        }
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "spigot",
+      "minecraft": "1.12.2",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot112-client-strict\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90618,
+        "assets": 40
+      },
+      "probe_sha256": "6c8b19cfbc925b7182ada7147ed2d8b1e8d4e29885c26046250aef707571c2a5",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "b54f643f74f67bd321769075da5bcf9783aa382a1c7015541ac25c823937c041",
+        "payload_sha256": "a76e3571071af6a9ce9d699b9b677c66f9490de1fc7bdf0e38def355aecf373b",
+        "current_distribution": "spigot112/build/libs/LoraxCustomTrees-spigot-1.12.2-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-1.12.2-6.2.jar"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.12.2",
+        "clients": [
+          "loraxprobeb",
+          "loraxprobea"
+        ],
+        "client_mods": [],
+        "simultaneous_seconds": 5
+      },
+      "probe_artifact": {
+        "sha256": "cfc811a0fd7aff25a71386f55a0d0dccedfb7309f4bb5240d6b7f7dd8649c59d",
+        "filename": "LoraxIntegrationProbe-spigot112-6.2.jar"
+      }
+    },
+    {
+      "platform": "spigot",
+      "minecraft": "26.3",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot263\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "spigot",
+      "minecraft": "1.20.6",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot-1.20.6\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90608,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "618eef09cf1a273a0f6197e50cf93728d68c8f48b033f37d91cd53aaf083ad79",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar"
+      },
+      "server_source": {
+        "actual": "1.20.6",
+        "sha256": "3454b7a43db47817c35c23370c885a773594ad0e18b9024882d6a97346d72c06",
+        "requested": "1.20.6"
+      },
+      "probe_artifact": {
+        "sha256": "2039486213b9539b21320afee2d738021e708969b07d53b29f7d4fcc3f373ca8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "spigot",
+      "minecraft": "1.20.1",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\spigot1201-integration\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90607,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "b980ceba1720f38395a0012f3b372403252d12e6d95ef3caab2551637405d73d",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "fbbd13337b86eca6eb058ab95d187ba2307a9154146c3f21e4092bb882a77d83",
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "8fb36717dcbfb996c750f464584314585b3051012989b2393c5bbdde38ffc4c5"
+      },
+      "probe_artifact": {
+        "sha256": "c48af41c1e2d002110df3044977a8db3cdc3a91066730532188cfe06d644b2c8",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "1.12.2",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge112-client\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90614,
+        "assets": 40
+      },
+      "probe_sha256": "1ed0af3d18e8bdcca9efb28295f14e59f43e2c60ef0c07fcc7d588ab3ce846b4",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "6e21cd88c0e4a942ce6e0984edbe3f3d2af225325f62d0707f126d97e4eb6d0f",
+        "payload_sha256": "a929100b8802428b36bf4723e432ab6cb5261e372d4af698792db6a36e6fa1a0",
+        "current_distribution": "forge112/build/libs/LoraxCustomTrees-forge-1.12.2-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": false,
+        "filename": "LoraxCustomTrees-forge-1.12.2-6.2.jar"
+      },
+      "server_source": {
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2864/forge-1.12.2-14.23.5.2864-installer.jar",
+        "minecraft": "1.12.2",
+        "forge": "14.23.5.2864",
+        "sha256": "2c0065938de6df6f3deb4a08a3018940a1cc86111adb34a3be55d657857a11cc"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.12.2",
+        "clients": [
+          "loraxprobeb",
+          "loraxprobea"
+        ],
+        "client_mods": [],
+        "simultaneous_seconds": 5
+      },
+      "probe_artifact": {
+        "sha256": "3ffd2a976740794c6e05a39e327c4b5594e10ec4d2309174d3674348440a0a48",
+        "filename": "LoraxIntegrationProbe-forge112-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "26.1",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge261\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "08f12526d794001098ba594bd18638aa52998765bf5c54fcc9ab60376db70cd7",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "d4c38f669d2d2e4bd0ef0dfaf3973557f462fccb935cd35f1c2e7206f9063ad5",
+        "payload_sha256": "724b75224e59e313bcb67b4d290b2b452700005cf173eef60227b0c91331d78e",
+        "current_distribution": "forge261/build/libs/LoraxCustomTrees-forge-26.1-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-26.1-6.2.jar"
+      },
+      "server_source": {
+        "sha256": "b18b0fd7a28d2b20a6f623c0bc904a811d7def110b3aa81676e533c3b66c05af",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/26.1-62.0.9/forge-26.1-62.0.9-installer.jar",
+        "minecraft": "26.1",
+        "forge": "62.0.9"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "26.1",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "simultaneous_seconds": 5
+      },
+      "probe_artifact": {
+        "sha256": "16484dd8d1b7151eb42af9faa078701e1024e45404169baa95ff294b82f41610",
+        "filename": "LoraxIntegrationProbe-forge261-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "26.2",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge262\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "08f12526d794001098ba594bd18638aa52998765bf5c54fcc9ab60376db70cd7",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "4e4230472d1306929710e66d3b06d6e9128d6ea541021ad7c6a3643cb86a3280",
+        "payload_sha256": "438b4d7fe158b1230843f1b2ece40f43cb1356c7364d4c2c228e1f005f7cb035",
+        "current_distribution": "forge262/build/libs/LoraxCustomTrees-forge-26.2-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-26.2-6.2.jar"
+      },
+      "server_source": {
+        "minecraft": "26.2",
+        "forge": "65.1.6",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/26.2-65.1.6/forge-26.2-65.1.6-installer.jar",
+        "sha256": "7adb91ff3ca1b09c785368e9f88df086521ca94a5e948c9a0192424bed2078a0"
+      },
+      "probe_artifact": {
+        "sha256": "ff6a333cd344ac5140116604b9e5ee94de6c09253650f12d3597926636b11b05",
+        "filename": "LoraxIntegrationProbe-forge262-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "26.3",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge263-final\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "08f12526d794001098ba594bd18638aa52998765bf5c54fcc9ab60376db70cd7",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "0d83a2eafbd6aa3c896779b5823c780f2a1659ce99eaa95972d36a03824e7692",
+        "payload_sha256": "9e6ed9ae4caae08e70e5ef486cd25d23a856c48ae6015e346228c7949976c926",
+        "current_distribution": "forge26/build/libs/LoraxCustomTrees-forge-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-26.3-6.2.jar"
+      },
+      "server_source": {
+        "sha256": "a3b613a0e1ed8eb5e3df405affd2cc09a578e899beb7db932703f1175bf163e2",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/26.3-66.1.8/forge-26.3-66.1.8-installer.jar",
+        "minecraft": "26.3",
+        "forge": "66.1.8"
+      },
+      "probe_artifact": {
+        "sha256": "894a9374a9dd16efe6f8180bf9f2230b7778b3ea07457962e8c07aa8bc98f4e2",
+        "filename": "LoraxIntegrationProbe-forge26-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "1.21.10",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge12110-current\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "08f12526d794001098ba594bd18638aa52998765bf5c54fcc9ab60376db70cd7",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "197c4930417ad3a3164f78d41004fdac67eda9b5361cdb121b6083a1bbc491b3",
+        "payload_sha256": "bfa7007ac8d4b295b79cd9cd06d9eaebbead43b2ee9757bfc9e3cc8472ba673f",
+        "current_distribution": "forge12110/build/libs/LoraxCustomTrees-forge-1.21.10-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-1.21.10-6.2.jar"
+      },
+      "server_source": {
+        "sha256": "d13ecd5801859e50cfe5cf9419bb283cf3d87b94ad9d7da65e66e886a5286acf",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.1.18/forge-1.21.10-60.1.18-installer.jar",
+        "minecraft": "1.21.10",
+        "forge": "60.1.18"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.21.10",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "simultaneous_seconds": 5
+      },
+      "probe_artifact": {
+        "sha256": "b844c7361ff391a10dbd6f06d33a446950423fbf32799572cc26d4f5d5b5ef24",
+        "filename": "LoraxIntegrationProbe-forge12110-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "1.20.6",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge1206\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "probe_sha256": "866320fed81211f9bea997c2d81220c3a8a870cfc407974106f9147c2876ff94",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "sha256": "326fab05f6526b9309d6a0c6f7bbd6ba10eb789b5d715fc228d10378dba3929e",
+        "payload_sha256": "3b858dc3945ca5a5d64c058b419bd1246e2a8d4fc9acd8afb3007f25b972ea3b",
+        "current_distribution": "forge1206/build/libs/LoraxCustomTrees-forge-1.20.6-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-1.20.6-6.2.jar"
+      },
+      "server_source": {
+        "sha256": "69e5be0258757de8ac84217fdcb81ec55942171a30b1c2b0dcc4eb77dd7cf40e",
+        "minecraft": "1.20.6",
+        "forge": "50.2.15",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.6-50.2.15/forge-1.20.6-50.2.15-installer.jar"
+      },
+      "probe_artifact": {
+        "sha256": "45468e994b1462ad8d47a0c06be3b50d15d8876bb582f3c35301231ee66a741f",
+        "filename": "LoraxIntegrationProbe-forge1206-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "1.21",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge121-no-clients\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "probe_sha256": "08f12526d794001098ba594bd18638aa52998765bf5c54fcc9ab60376db70cd7",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": false,
+      "tested_artifact": {
+        "sha256": "b7e6f944253bf1b0758f848638595b77a35cb19e75bfbe133e87620923d7750f",
+        "payload_sha256": "8b96643b548bffe3e08b1719de120a9e37c477c92f6950f1486d93c8f8d2de23",
+        "current_distribution": "forge121/build/libs/LoraxCustomTrees-forge-1.21-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-1.21-6.2.jar"
+      },
+      "limitation": "Controlled shutdown hangs, reproduced without Lorax or probe; client protocol decoding also incomplete.",
+      "probe_artifact": {
+        "sha256": "dffa3c4dae117414371e601b2119c752ecd630610443b3c3e77cf8cccd31ddd8",
+        "filename": "LoraxIntegrationProbe-forge121-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "1.20",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge120-clients\\server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "probe_sha256": "866320fed81211f9bea997c2d81220c3a8a870cfc407974106f9147c2876ff94",
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "9608d9822301c58aa1b250d5f4a309a5654ba3d4f6d7191980a610ffbf474911",
+        "filename": "LoraxCustomTrees-forge-1.20-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "bd0dbe899c2c61eb96ab86a07b2287f1918ac9069f065e321f05f4b214c61c8b"
+      },
+      "server_source": {
+        "forge": "46.0.14",
+        "sha256": "9357a3ebdc113e39a535d47c5300dbcca943261a12ddda4861949e1e88d785d6",
+        "minecraft": "1.20",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20-46.0.14/forge-1.20-46.0.14-installer.jar"
+      },
+      "runner": {
+        "restart_check": false,
+        "controlled_shutdown": true,
+        "client_version": "1.20",
+        "passed": false,
+        "exit_code": 0,
+        "probe_result": "lorax-test/result.json",
+        "checked_at": "2026-11-20T02:10:58.9857734Z"
+      },
+      "client": {
+        "passed": false,
+        "minecraft": "1.20",
+        "clients": [],
+        "error": "Error: loraxprobea: disconnected before spawn (socketClosed)\n    at Client.<anonymous> (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\join.cjs:45:28)\n    at Client.emit (node:events:526:24)\n    at Socket.endSocket (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\minecraft-protocol\\src\\client.js:168:12)\n    at Socket.emit (node:events:526:24)\n    at endReadableNT (node:internal/streams/readable:2147:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)",
+        "diagnostics": []
+      },
+      "probe_artifact": {
+        "sha256": "37ab815b3f1f2e5be9473049644525afdfb664fbc50ba02e4906cc349151c1df",
+        "filename": "LoraxIntegrationProbe-forge120-6.2.jar"
+      }
+    },
+    {
+      "platform": "forge",
+      "minecraft": "1.20",
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/forge120-clients-sequential/server",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "runner": {
+        "exit_code": 0,
+        "checked_at": "2026-11-20T02:12:58.8808041Z",
+        "passed": true,
+        "restart_check": false,
+        "controlled_shutdown": true,
+        "client_version": "1.20",
+        "probe_result": "lorax-test/result.json"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.20",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "handshake_order": "sequential",
+        "simultaneous_seconds": 5
+      },
+      "human_gameplay_validated": false,
+      "controlled_shutdown": true,
+      "tested_artifact": {
+        "matches_current_payload": false,
+        "payload_sha256": "9608d9822301c58aa1b250d5f4a309a5654ba3d4f6d7191980a610ffbf474911",
+        "filename": "LoraxCustomTrees-forge-1.20-6.2.jar",
+        "matches_current_archive": false,
+        "sha256": "bd0dbe899c2c61eb96ab86a07b2287f1918ac9069f065e321f05f4b214c61c8b"
+      },
+      "probe_artifact": {
+        "sha256": "37ab815b3f1f2e5be9473049644525afdfb664fbc50ba02e4906cc349151c1df",
+        "filename": "LoraxIntegrationProbe-forge120-6.2.jar"
+      }
+    },
+    {
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.21.1",
+      "result_file": "plugins/LoraxIntegrationProbe/initial-result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot-1.21.1\\server",
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar"
+      },
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "human_gameplay_validated": false,
+      "platform": "spigot",
+      "probe_artifact": {
+        "sha256": "8f71e714d7acfc4e23f13388567d6ac7dd66b4350d876e33fd80a1b3f7dd1efb",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "probe_sha256": "3852ebf629ddc8823b741fadf4813417b3f2f2afac642b79429f4356340d1231",
+      "minecraft": "1.21.1",
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot-1.21.1\\server",
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar"
+      },
+      "probe": {
+        "passed": true,
+        "assertions": 265,
+        "restart_check": true,
+        "assets": 40
+      },
+      "human_gameplay_validated": false,
+      "platform": "spigot",
+      "runner": {
+        "checked_at": "2026-11-20T02:17:15.5557697Z",
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": true,
+        "restart_check": true
+      },
+      "probe_artifact": {
+        "sha256": "8f71e714d7acfc4e23f13388567d6ac7dd66b4350d876e33fd80a1b3f7dd1efb",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "probe_sha256": "b7a57972fd7e7dac6df79b4b404c1d0aeaa0335afa76782cfd2f53b73403652e",
+      "minecraft": "26.1.2",
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot-26.1.2\\server",
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar"
+      },
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "human_gameplay_validated": false,
+      "platform": "spigot",
+      "runner": {
+        "restart_check": false,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": true,
+        "checked_at": "2026-11-20T02:27:49.088239Z",
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0
+      },
+      "probe_artifact": {
+        "sha256": "8f71e714d7acfc4e23f13388567d6ac7dd66b4350d876e33fd80a1b3f7dd1efb",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      }
+    },
+    {
+      "probe_sha256": "866320fed81211f9bea997c2d81220c3a8a870cfc407974106f9147c2876ff94",
+      "minecraft": "1.20.6",
+      "result_file": "lorax-test/result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\forge1206-clients-sequential\\server",
+      "tested_artifact": {
+        "sha256": "326fab05f6526b9309d6a0c6f7bbd6ba10eb789b5d715fc228d10378dba3929e",
+        "payload_sha256": "3b858dc3945ca5a5d64c058b419bd1246e2a8d4fc9acd8afb3007f25b972ea3b",
+        "current_distribution": "forge1206/build/libs/LoraxCustomTrees-forge-1.20.6-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-1.20.6-6.2.jar"
+      },
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "human_gameplay_validated": false,
+      "platform": "forge",
+      "runner": {
+        "exit_code": 0,
+        "checked_at": "2026-11-20T02:13:46.9465954Z",
+        "passed": false,
+        "restart_check": false,
+        "controlled_shutdown": true,
+        "client_version": "1.20.6",
+        "probe_result": "lorax-test/result.json"
+      },
+      "client": {
+        "passed": false,
+        "minecraft": "1.20.6",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "error": "Error: Client protocol decoding failed; see recorded diagnostics\n    at run (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\join.cjs:58:35)",
+        "diagnostics": [
+          "PartialReadError: Read error for undefined : Missing characters in string, found size is 99290 expected size was 105172\n    at new ExtendableError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:63:13)\n    at new PartialReadError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:70:5)\n    at Object.string (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:107:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:867:65)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:869:11)\n    at Object.ArmorTrimMaterial (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:874:9)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:499:55)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:502:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:514:13)\n    at Object.SlotComponent (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:696:9)",
+          "PartialReadError: Read error for undefined : Missing characters in string, found size is 99290 expected size was 105172\n    at new ExtendableError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:63:13)\n    at PartialReadError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:70:5)\n    at Object.string (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:107:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:867:65)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:869:11)\n    at Object.ArmorTrimMaterial (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:874:9)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:499:55)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:502:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:514:13)\n    at Object.SlotComponent (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:696:9)"
+        ]
+      },
+      "probe_artifact": {
+        "sha256": "45468e994b1462ad8d47a0c06be3b50d15d8876bb582f3c35301231ee66a741f",
+        "filename": "LoraxIntegrationProbe-forge1206-6.2.jar"
+      }
+    },
+    {
+      "runner": {
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "checked_at": "2026-11-20T19:23:26.1607188Z",
+        "passed": true,
+        "client_version": "",
+        "restart_check": false,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json"
+      },
+      "server_source": {
+        "id": 17,
+        "time": "2023-06-13T00:00:32.351Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "c287e921a96438964f32f3c4e394d6809e0d06fa",
+            "time": "2023-06-12T23:51:45Z",
+            "message": "Updated Upstream (Bukkit/CraftBukkit/Spigot) (#9301)\n\n"
+          }
+        ],
+        "downloads": {
+          "server:mojang": {
+            "name": "paper-1.20-17-mojang.jar",
+            "checksums": {
+              "sha256": "9f120693b83e1a82c5c182a91c52bb7a7ea9e588e73d8dc5e1bdfcbed7f8bc01"
+            },
+            "size": 43221503,
+            "url": "https://fill-data.papermc.io/v1/objects/9f120693b83e1a82c5c182a91c52bb7a7ea9e588e73d8dc5e1bdfcbed7f8bc01/paper-1.20-17-mojang.jar"
+          },
+          "server:default": {
+            "name": "paper-1.20-17.jar",
+            "checksums": {
+              "sha256": "1e4ccfc0599f491ee6fee4455d3722332ac5d78584fccd55cbb3b51e11504505"
+            },
+            "size": 43328884,
+            "url": "https://fill-data.papermc.io/v1/objects/1e4ccfc0599f491ee6fee4455d3722332ac5d78584fccd55cbb3b51e11504505/paper-1.20-17.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.20",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.20\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "checked_at": "2026-11-20T19:24:10.0745744Z",
+        "passed": true,
+        "client_version": "",
+        "restart_check": false,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json"
+      },
+      "server_source": {
+        "id": 196,
+        "time": "2023-09-21T16:59:41.322Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "773dd724469bae89d0c2075edc3d1ddc8d5b0b18",
+            "time": "2023-09-21T16:48:55Z",
+            "message": "Updated Upstream (Bukkit/CraftBukkit) (#9739)\n\nUpstream has released updates that appear to apply and compile correctly.\r\nThis update has not been tested by PaperMC and as with ANY update, please do your own testing\r\n\r\nBukkit Changes:\r\n69c7ce23 PR-990: Use Mockito instead of InvocationHandler for test mocking\r\n997de31d PR-893: Add a stream method to Registry to make it easier to use and to avoid unnecessary wrapping\r\n6a8ce581 Fix malformed javadoc in previous commit\r\n26c74f6d PR-890: Add more Sculk API (bloom, shriek, bloom event)\r\naa067abf PR-895: Load GameEvent and MusicInstrument from registry\r\n\r\nCraftBukkit Changes:\r\n78796c9de Add support for Java 21\r\nddc9a2dad SPIGOT-7475: Don't fire SculkBloomEvent during world generation\r\ncaee2311a PR-1245: Add a stream method to Registry to make it easier to use and to avoid unnecessary wrapping\r\nde421cf56 PR-1242: Add more Sculk API (bloom, shriek, bloom event)\r\n00f5a80fb PR-1252: Fix error when generating a tree in water\r\n10219df3a PR-1248: Load GameEvent and MusicInstrument from registry"
+          }
+        ],
+        "downloads": {
+          "server:mojang": {
+            "name": "paper-1.20.1-196-mojang.jar",
+            "checksums": {
+              "sha256": "67f31f691afd52a0c4ce33827fd635d0d0e86d46dec0ef6f89e1d58cd27832cf"
+            },
+            "size": 43120602,
+            "url": "https://fill-data.papermc.io/v1/objects/67f31f691afd52a0c4ce33827fd635d0d0e86d46dec0ef6f89e1d58cd27832cf/paper-1.20.1-196-mojang.jar"
+          },
+          "server:default": {
+            "name": "paper-1.20.1-196.jar",
+            "checksums": {
+              "sha256": "234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea"
+            },
+            "size": 43230582,
+            "url": "https://fill-data.papermc.io/v1/objects/234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea/paper-1.20.1-196.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "b7a57972fd7e7dac6df79b4b404c1d0aeaa0335afa76782cfd2f53b73403652e",
+      "minecraft": "1.20.1",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.20.1\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "checked_at": "2026-11-20T19:24:47.6830382Z",
+        "passed": true,
+        "client_version": "",
+        "restart_check": false,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json"
+      },
+      "server_source": {
+        "id": 499,
+        "time": "2024-10-30T19:22:05.407Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "ba31f4128208e954d6648001724887352f71ece9",
+            "time": "2024-05-28T12:20:58Z",
+            "message": "[ci skip] Clean up paperclip build-pr workflow\n\nGracefully handle paperclip uploads to pull requests in case of build\nworkflow issues.\n"
+          },
+          {
+            "sha": "9de3f75fa2af7c47dc2ed3bcec850b9e245dda21",
+            "time": "2024-10-30T18:43:10Z",
+            "message": "Backport small fixes\n"
+          }
+        ],
+        "downloads": {
+          "server:mojang": {
+            "name": "paper-1.20.4-499-mojang.jar",
+            "checksums": {
+              "sha256": "e84aa4943cc51d7545b1c9b669bb1e0b143323d248ebb89012182f5554bc13d7"
+            },
+            "size": 42666591,
+            "url": "https://fill-data.papermc.io/v1/objects/e84aa4943cc51d7545b1c9b669bb1e0b143323d248ebb89012182f5554bc13d7/paper-1.20.4-499-mojang.jar"
+          },
+          "server:default": {
+            "name": "paper-1.20.4-499.jar",
+            "checksums": {
+              "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b"
+            },
+            "size": 42781488,
+            "url": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.20.4",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.20.4\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "checked_at": "2026-11-20T19:25:24.9293689Z",
+        "passed": true,
+        "client_version": "",
+        "restart_check": false,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json"
+      },
+      "server_source": {
+        "id": 22,
+        "time": "2024-04-29T03:51:31.118Z",
+        "channel": "ALPHA",
+        "commits": [
+          {
+            "sha": "8f7ac62905dbeeef1ad000a44c7dd035d4e115b0",
+            "time": "2024-04-29T03:43:50Z",
+            "message": "Validate manifest provided mapping namespace (#10612)\n\nWith plugins adopting paperweights mapping namespaces in their manifest\r\nfile in and after paper 1.20.5, incorrectly spelled namespaces\r\npreviously were simply implied as the spigot namespace.\r\n\r\nThis commit properly ensures plugin authors are using a known mapping\r\nnamespace in their manifest, avoiding down the line confusion on\r\nincorrect remapping behaviour.\r\n\r\nThe commit also fixes two incorrect log parameters."
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.20.5-22.jar",
+            "checksums": {
+              "sha256": "3cd7da2f8df92e082a501a39c674aab3c0343edd179b86f5baccaebfc9974132"
+            },
+            "size": 45593685,
+            "url": "https://fill-data.papermc.io/v1/objects/3cd7da2f8df92e082a501a39c674aab3c0343edd179b86f5baccaebfc9974132/paper-1.20.5-22.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.20.5",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.20.5\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "checked_at": "2026-11-20T19:23:54.7360833Z",
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": false
+      },
+      "server_source": {
+        "id": 151,
+        "time": "2024-10-30T19:15:37.756Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "a4f0f5ccd05592dc9be040d8c17d6795baa7b1b8",
+            "time": "2024-10-30T18:57:33Z",
+            "message": "Backport small fixes\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.20.6-151.jar",
+            "checksums": {
+              "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640"
+            },
+            "size": 45826876,
+            "url": "https://fill-data.papermc.io/v1/objects/4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640/paper-1.20.6-151.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.20.6",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.20.6\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "checked_at": "2026-11-20T19:24:40.6939206Z",
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": false
+      },
+      "server_source": {
+        "id": 130,
+        "time": "2024-08-10T10:04:43.605Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "b1b5d4c1e4b7c95afd5c932ca392bee66533a60c",
+            "time": "2024-08-10T09:55:08Z",
+            "message": "Check shooter in configurable projectile relative velocity patch\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.21-130.jar",
+            "checksums": {
+              "sha256": "ab9bb1afc3cea6978a0c03ce8448aa654fe8a9c4dddf341e7cbda1b0edaa73f5"
+            },
+            "size": 49049109,
+            "url": "https://fill-data.papermc.io/v1/objects/ab9bb1afc3cea6978a0c03ce8448aa654fe8a9c4dddf341e7cbda1b0edaa73f5/paper-1.21-130.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.21",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.21\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "checked_at": "2026-11-20T19:25:20.2255049Z",
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": false
+      },
+      "server_source": {
+        "id": 130,
+        "time": "2026-01-04T21:00:59Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "8043efd4d0e5bdc9dd0cbc33e9e8bb49e6d8c012",
+            "time": "2026-01-04T21:00:08Z",
+            "message": "Correctly read per-world gamerule for command blocks (#13411)\n\n"
+          },
+          {
+            "sha": "2f7f1397628914e44154c326b56e5e7e9adf6721",
+            "time": "2025-12-20T23:17:03Z",
+            "message": "[ci skip] Rebuild patches\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.21.10-130.jar",
+            "checksums": {
+              "sha256": "158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53"
+            },
+            "size": 54475623,
+            "url": "https://fill-data.papermc.io/v1/objects/158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53/paper-1.21.10-130.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.21.10",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.21.10\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "checked_at": "2026-11-20T19:25:59.739139Z",
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": false
+      },
+      "server_source": {
+        "id": 132,
+        "time": "2026-05-11T11:43:09Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "c5eb0790f199da6c38d0a650e1e5cd5415b28185",
+            "time": "2026-05-11T11:41:08Z",
+            "message": "Fork friendly byte buf correctly\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-1.21.11-132.jar",
+            "checksums": {
+              "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba"
+            },
+            "size": 54846016,
+            "url": "https://fill-data.papermc.io/v1/objects/5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba/paper-1.21.11-132.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.21.11",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-1.21.11\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "controlled_shutdown": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0,
+        "checked_at": "2026-11-20T19:23:40.22835Z",
+        "restart_check": false,
+        "passed": true,
+        "client_version": ""
+      },
+      "server_source": {
+        "id": 29,
+        "time": "2026-04-06T17:01:17Z",
+        "channel": "ALPHA",
+        "commits": [
+          {
+            "sha": "77c0866f5f60a74f475e94612a391b22df5cefe3",
+            "time": "2026-04-06T17:00:13Z",
+            "message": "handle legacy uid in vanilla migration and always write metadata during migration\n"
+          },
+          {
+            "sha": "106a934df2f892f5895b239f80c12bf13c164657",
+            "time": "2026-04-06T05:53:15Z",
+            "message": "[ci skip] Drop stale TODO\n\nThis is no longer needed as we explicitly add the correct gen settings to the SavedDataStorage for custom dimensions in CraftServer. We no longer have multiple PrimaryLevelData, and WorldGenSettings is saved in its own file.\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-26.1.1-29.jar",
+            "checksums": {
+              "sha256": "43d08ed52c7af4e9f72769122501a5c15f99c7ace0c428a3eef040fd3f6fdbc5"
+            },
+            "size": 52896049,
+            "url": "https://fill-data.papermc.io/v1/objects/43d08ed52c7af4e9f72769122501a5c15f99c7ace0c428a3eef040fd3f6fdbc5/paper-26.1.1-29.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "26.1.1",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-26.1.1\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "controlled_shutdown": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0,
+        "checked_at": "2026-11-20T19:24:15.97168Z",
+        "restart_check": false,
+        "passed": true,
+        "client_version": ""
+      },
+      "server_source": {
+        "id": 74,
+        "time": "2026-07-06T16:51:09Z",
+        "channel": "STABLE",
+        "commits": [],
+        "downloads": {
+          "server:default": {
+            "name": "paper-26.1.2-74.jar",
+            "checksums": {
+              "sha256": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7"
+            },
+            "size": 52893229,
+            "url": "https://fill-data.papermc.io/v1/objects/1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7/paper-26.1.2-74.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "b7a57972fd7e7dac6df79b4b404c1d0aeaa0335afa76782cfd2f53b73403652e",
+      "minecraft": "26.1.2",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-26.1.2\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "controlled_shutdown": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0,
+        "checked_at": "2026-11-20T19:24:47.5299148Z",
+        "restart_check": false,
+        "passed": true,
+        "client_version": ""
+      },
+      "server_source": {
+        "id": 135,
+        "time": "2026-10-25T11:18:00Z",
+        "channel": "STABLE",
+        "commits": [
+          {
+            "sha": "e4d6dfd1597968e78a3d405dce73d1d1f14a4b81",
+            "time": "2026-10-25T11:17:43Z",
+            "message": "Update publishing workflow\n"
+          },
+          {
+            "sha": "91693c3ec1f01c39f65c3c3bd05f53cf45c2cbb7",
+            "time": "2026-10-23T17:12:57Z",
+            "message": "Fix equipment check\n"
+          }
+        ],
+        "downloads": {
+          "server:default": {
+            "name": "paper-26.2-135.jar",
+            "checksums": {
+              "sha256": "ef3dbc68b013deafdbbee3bebf1ba351671ebcda94a8f136809b7532d5ba2fe1"
+            },
+            "size": 64525370,
+            "url": "https://fill-data.papermc.io/v1/objects/ef3dbc68b013deafdbbee3bebf1ba351671ebcda94a8f136809b7532d5ba2fe1/paper-26.2-135.jar"
+          }
+        }
+      },
+      "platform": "paper",
+      "probe_sha256": "b7a57972fd7e7dac6df79b4b404c1d0aeaa0335afa76782cfd2f53b73403652e",
+      "minecraft": "26.2",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\final-paper-26.2\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": false,
+        "exit_code": 0,
+        "passed": true,
+        "checked_at": "2026-11-20T19:12:03.4977329Z",
+        "client_version": "",
+        "controlled_shutdown": true
+      },
+      "platform": "paper",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "26.3",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "fc9a43ad7914c16363e37e3c719ddd9a27f482abcf258fd1047ce61654285599",
+        "payload_sha256": "cae09810310de45ac2e900e7857eb442b6115bdc923a311bee09bcf1e54d44fa",
+        "current_distribution": "build/libs/Lorax-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "Lorax-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ef433e1ca04e3b75664a90967b1515268162eac0090821a474a77903d71936ae",
+        "filename": "LoraxIntegrationProbe-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/initial-result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-20\\paper263-final\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": true,
+        "exit_code": 0,
+        "passed": true,
+        "checked_at": "2026-11-20T19:12:18.490326Z",
+        "client_version": "",
+        "controlled_shutdown": true
+      },
+      "platform": "paper",
+      "probe_sha256": "3852ebf629ddc8823b741fadf4813417b3f2f2afac642b79429f4356340d1231",
+      "minecraft": "26.3",
+      "probe": {
+        "passed": true,
+        "assertions": 265,
+        "restart_check": true,
+        "assets": 40
+      },
+      "tested_artifact": {
+        "sha256": "fc9a43ad7914c16363e37e3c719ddd9a27f482abcf258fd1047ce61654285599",
+        "payload_sha256": "cae09810310de45ac2e900e7857eb442b6115bdc923a311bee09bcf1e54d44fa",
+        "current_distribution": "build/libs/Lorax-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "Lorax-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ef433e1ca04e3b75664a90967b1515268162eac0090821a474a77903d71936ae",
+        "filename": "LoraxIntegrationProbe-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-20\\paper263-final\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "exit_code": 0,
+        "client_version": "",
+        "passed": true,
+        "restart_check": false,
+        "checked_at": "2026-11-20T19:24:10.0561172Z",
+        "controlled_shutdown": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json"
+      },
+      "platform": "spigot",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.20.1",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\spigot1201-final\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "probe_artifact": {
+        "sha256": "ebd7b2a83da7458edc792701fa577bfe2d7083d79fa915c8c5842d96fcde6119",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "runner": {
+        "restart_check": false,
+        "checked_at": "2026-11-20T19:19:07.2755354Z",
+        "client_version": "1.21.10",
+        "passed": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "controlled_shutdown": true,
+        "exit_code": 0
+      },
+      "server_source": {
+        "minecraft": "1.21.10",
+        "implementation": "Spigot",
+        "sha256": "016372b162a5da63eae6218c875dab1e6a46868b7b4899b33a845bea9f8e09b8",
+        "buildtools_log": "F:/LoraxCustomTrees-validation/2026-11-19/spigot263-buildtools/build-1.21.10.log"
+      },
+      "platform": "spigot",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "1.21.10",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.21.10",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "handshake_order": "sequential",
+        "simultaneous_seconds": 5
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\build\\spigot12110-final\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "runner": {
+        "restart_check": false,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0,
+        "passed": true,
+        "client_version": "",
+        "checked_at": "2026-11-20T19:10:10.5019797Z",
+        "controlled_shutdown": true
+      },
+      "platform": "spigot",
+      "probe_sha256": "62f0f9dbc8e0be117410f8b89b805a9cc6815cefa47687b4aa8efb3b00526080",
+      "minecraft": "26.2",
+      "probe": {
+        "passed": true,
+        "assertions": 90617,
+        "restart_check": false,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": false
+      },
+      "tested_artifact": {
+        "sha256": "1bfaf60a7a36ca543517a97c4c447accc0870c6adb0489a81fe57a47b2bae053",
+        "payload_sha256": "cbd55077350ce39d2b1899b9870df5e82e511b8ddc981166dd30d96153adcba5",
+        "current_distribution": "spigotModern/build/libs/LoraxCustomTrees-spigot-mc1.20-26.3-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-modern-6.2.jar"
+      },
+      "probe_artifact": {
+        "sha256": "d8671672b50c28b4fa3d37391f048aeb93efcf00ff109bebf973cbd9e23a65ec",
+        "filename": "LoraxIntegrationProbe-modern-6.2.jar"
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-19\\spigot262-typed-rule\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "probe_artifact": {
+        "sha256": "036a7002783860794df466ac2e3f3b2d4681ee133aa65cafa72c13d6eac3de46",
+        "filename": "LoraxIntegrationProbe-spigot112-6.2.jar"
+      },
+      "runner": {
+        "restart_check": false,
+        "exit_code": 0,
+        "controlled_shutdown": true,
+        "client_version": "1.12.2",
+        "passed": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "checked_at": "2026-11-20T19:20:57.9718333Z"
+      },
+      "platform": "spigot",
+      "probe_sha256": "9d0616b1ae0930afb1fe3941d749ce0c4b8f969ff1a92de94eb7473dff144ff9",
+      "minecraft": "1.12.2",
+      "probe": {
+        "passed": true,
+        "assertions": 90618,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "tested_artifact": {
+        "sha256": "b54f643f74f67bd321769075da5bcf9783aa382a1c7015541ac25c823937c041",
+        "payload_sha256": "a76e3571071af6a9ce9d699b9b677c66f9490de1fc7bdf0e38def355aecf373b",
+        "current_distribution": "spigot112/build/libs/LoraxCustomTrees-spigot-1.12.2-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-spigot-1.12.2-6.2.jar"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.12.2",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "handshake_order": "sequential",
+        "simultaneous_seconds": 5
+      },
+      "result_file": "plugins/LoraxIntegrationProbe/result.json",
+      "evidence_directory": "F:\\LoraxCustomTrees-validation\\2026-11-20\\spigot112-determinism\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "probe_artifact": {
+        "sha256": "adb4daabd38d4ec9626cda17dcff783da3e0b16f51d6284f325af80b6f7bae27",
+        "filename": "LoraxIntegrationProbe-forge112-6.2.jar"
+      },
+      "runner": {
+        "checked_at": "2026-11-20T19:23:43.4674243Z",
+        "controlled_shutdown": true,
+        "client_version": "1.12.2",
+        "passed": true,
+        "exit_code": 0,
+        "probe_result": "lorax-test/result.json",
+        "restart_check": false
+      },
+      "server_source": {
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2864/forge-1.12.2-14.23.5.2864-installer.jar",
+        "minecraft": "1.12.2",
+        "sha256": "2c0065938de6df6f3deb4a08a3018940a1cc86111adb34a3be55d657857a11cc",
+        "forge": "14.23.5.2864"
+      },
+      "platform": "forge",
+      "probe_sha256": "2faa90ede80cdd14535c9551462814bbfd56dbdd9d811137808285b1b1fbc23f",
+      "minecraft": "1.12.2",
+      "probe": {
+        "passed": true,
+        "assertions": 90614,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "tested_artifact": {
+        "sha256": "6e21cd88c0e4a942ce6e0984edbe3f3d2af225325f62d0707f126d97e4eb6d0f",
+        "payload_sha256": "a929100b8802428b36bf4723e432ab6cb5261e372d4af698792db6a36e6fa1a0",
+        "current_distribution": "forge112/build/libs/LoraxCustomTrees-forge-1.12.2-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": false,
+        "filename": "LoraxCustomTrees-forge-1.12.2-6.2.jar"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.12.2",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "handshake_order": "sequential",
+        "simultaneous_seconds": 5
+      },
+      "result_file": "lorax-test/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\forge112-final\\server",
+      "human_gameplay_validated": false
+    },
+    {
+      "probe_artifact": {
+        "sha256": "62a46bfbbf22dbde0ec7cbed9b0954d3433f67fdf143d2a62c8e68036430fbdb",
+        "filename": "LoraxIntegrationProbe-forge120-6.2.jar"
+      },
+      "runner": {
+        "passed": true,
+        "probe_result": "lorax-test/result.json",
+        "controlled_shutdown": true,
+        "exit_code": 0,
+        "restart_check": false,
+        "checked_at": "2026-11-20T19:27:59.5340196Z",
+        "client_version": "1.20"
+      },
+      "server_source": {
+        "sha256": "9357a3ebdc113e39a535d47c5300dbcca943261a12ddda4861949e1e88d785d6",
+        "forge": "46.0.14",
+        "minecraft": "1.20",
+        "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20-46.0.14/forge-1.20-46.0.14-installer.jar"
+      },
+      "platform": "forge",
+      "probe_sha256": "866320fed81211f9bea997c2d81220c3a8a870cfc407974106f9147c2876ff94",
+      "minecraft": "1.20",
+      "probe": {
+        "passed": true,
+        "assertions": 90600,
+        "assets": 40,
+        "candidate_determinism": true,
+        "layout_reproducible": true
+      },
+      "tested_artifact": {
+        "sha256": "0e315f38744c37d5b088a1e944951772d6c73da3e0adbd0e3b1123013f2fb00f",
+        "payload_sha256": "4c6dd159d8aefe9bb253e05afe1665cddac3caedb2fe28c47474f7c6220960a5",
+        "current_distribution": "forge120/build/libs/LoraxCustomTrees-forge-1.20-6.2.jar",
+        "matches_current_payload": true,
+        "matches_current_archive": true,
+        "filename": "LoraxCustomTrees-forge-1.20-6.2.jar"
+      },
+      "client": {
+        "passed": true,
+        "minecraft": "1.20",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "client_mods": [],
+        "handshake_order": "sequential",
+        "simultaneous_seconds": 5
+      },
+      "result_file": "lorax-test/result.json",
+      "evidence_directory": "L:\\LoraxCustomTrees-validation\\2026-11-20\\forge120-final\\server",
+      "human_gameplay_validated": false
+    }
+  ],
+  "control_runs": [
+    {
+      "result": {
+        "forge": "50.2.15",
+        "mods": [],
+        "controlled_shutdown": true,
+        "minecraft": "1.20.6",
+        "client_exit": 1
+      },
+      "client": {
+        "passed": false,
+        "minecraft": "1.20.6",
+        "clients": [
+          "loraxprobea",
+          "loraxprobeb"
+        ],
+        "error": "Error: Client protocol decoding failed; see recorded diagnostics\n    at run (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\join.cjs:58:35)",
+        "diagnostics": [
+          "PartialReadError: Read error for undefined : Missing characters in string, found size is 99290 expected size was 105172\n    at new ExtendableError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:63:13)\n    at new PartialReadError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:70:5)\n    at Object.string (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:107:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:867:65)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:869:11)\n    at Object.ArmorTrimMaterial (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:874:9)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:499:55)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:502:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:514:13)\n    at Object.SlotComponent (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:696:9)",
+          "PartialReadError: Read error for undefined : Missing characters in string, found size is 99290 expected size was 105172\n    at new ExtendableError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:63:13)\n    at PartialReadError (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\utils.js:70:5)\n    at Object.string (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:107:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:867:65)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:869:11)\n    at Object.ArmorTrimMaterial (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:874:9)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:499:55)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:502:15)\n    at eval (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:514:13)\n    at Object.SlotComponent (eval at compile (C:\\Users\\william\\Desktop\\git\\LoraxCustomTrees\\tools\\client-probe\\node_modules\\protodef\\src\\compiler.js:262:12), <anonymous>:696:9)"
+        ]
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/forge1206-client-control/server"
+    },
+    {
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/forge121-control/server",
+      "result": {
+        "control": "Forge 1.21 without Lorax or probe",
+        "clean_shutdown": false
+      }
+    }
+  ],
+  "updated_at": "2026-11-20T19:30:18.6571832Z",
+  "schema_version": 1,
+  "engine_contract": {
+    "assertions": 135760,
+    "assets": 40,
+    "java_runtimes": [
+      8,
+      25
+    ],
+    "evidence": "build/validation/final-checks.log and build/validation/engine-java8-final.log",
+    "passed": true
+  },
+  "forge_builds": [
+    {
+      "sha256": "94ff2c35ee91065d68ce5c20c5b31698e95c7eb892cfaff96357a7ff05debcde",
+      "target": "forge112",
+      "artifact_changed": true
+    },
+    {
+      "sha256": "0e315f38744c37d5b088a1e944951772d6c73da3e0adbd0e3b1123013f2fb00f",
+      "target": "forge120",
+      "artifact_changed": true
+    },
+    {
+      "sha256": "326fab05f6526b9309d6a0c6f7bbd6ba10eb789b5d715fc228d10378dba3929e",
+      "target": "forge1206",
+      "artifact_changed": false
+    },
+    {
+      "sha256": "b7e6f944253bf1b0758f848638595b77a35cb19e75bfbe133e87620923d7750f",
+      "target": "forge121",
+      "artifact_changed": false
+    },
+    {
+      "sha256": "197c4930417ad3a3164f78d41004fdac67eda9b5361cdb121b6083a1bbc491b3",
+      "target": "forge12110",
+      "artifact_changed": false
+    },
+    {
+      "sha256": "d4c38f669d2d2e4bd0ef0dfaf3973557f462fccb935cd35f1c2e7206f9063ad5",
+      "target": "forge261",
+      "artifact_changed": false
+    },
+    {
+      "sha256": "4e4230472d1306929710e66d3b06d6e9128d6ea541021ad7c6a3643cb86a3280",
+      "target": "forge262",
+      "artifact_changed": false
+    },
+    {
+      "sha256": "0d83a2eafbd6aa3c896779b5823c780f2a1659ce99eaa95972d36a03824e7692",
+      "target": "forge26",
+      "artifact_changed": false
+    }
+  ],
+  "failed_or_invalid_attempts": [
+    {
+      "runner": {
+        "restart_check": false,
+        "controlled_shutdown": true,
+        "client_version": "",
+        "passed": false,
+        "checked_at": "2026-11-20T02:37:34.3968929Z",
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 0
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/spigot-26.2/server",
+      "reason": "Windows native file-sharing errors before probe completion",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "controlled_shutdown": true,
+        "passed": true,
+        "client_version": "",
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "checked_at": "2026-11-20T19:08:09.0333588Z",
+        "exit_code": 0,
+        "restart_check": false
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/spigot262-retry/server",
+      "reason": "Invalidated: probe world-init listener used a removed deprecated game-rule API; superseded by typed API run",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "restart_check": false,
+        "client_version": "",
+        "exit_code": 0,
+        "checked_at": "2026-11-20T19:17:24.4551767Z",
+        "controlled_shutdown": true,
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "passed": false
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/spigot12110/server",
+      "reason": "Windows native file-sharing errors; fresh NTFS run passed",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "restart_check": false,
+        "controlled_shutdown": true,
+        "client_version": "1.20",
+        "passed": false,
+        "exit_code": 0,
+        "probe_result": "lorax-test/result.json",
+        "checked_at": "2026-11-20T02:10:58.9857734Z"
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-19/forge120-clients/server",
+      "reason": "Simultaneous login shared-random-source race; sequential-login run passed",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "checked_at": "2026-11-20T19:21:08.5980661Z",
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "restart_check": false,
+        "client_version": "",
+        "controlled_shutdown": false,
+        "exit_code": 1,
+        "passed": false
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-20/final-paper-1.20/server",
+      "reason": "Java JAR read failed on Btrfs-backed drive; NTFS run passed",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "controlled_shutdown": false,
+        "passed": false,
+        "restart_check": false,
+        "client_version": "",
+        "checked_at": "2026-11-20T19:21:12.0961538Z",
+        "exit_code": 1
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-20/final-paper-1.20.6/server",
+      "reason": "Java JAR read failed on Btrfs-backed drive; NTFS run passed",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "checked_at": "2026-11-20T19:21:12.2193382Z",
+        "probe_result": "plugins/LoraxIntegrationProbe/result.json",
+        "exit_code": 1,
+        "client_version": "",
+        "passed": false,
+        "restart_check": false,
+        "controlled_shutdown": false
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-20/final-paper-26.1.1/server",
+      "reason": "Java JAR read failed on Btrfs-backed drive; NTFS run passed",
+      "counted_as_pass": false
+    },
+    {
+      "runner": {
+        "probe_result": "lorax-test/result.json",
+        "passed": false,
+        "restart_check": false,
+        "checked_at": "2026-11-20T19:20:06.228467Z",
+        "exit_code": 1,
+        "client_version": "1.12.2",
+        "controlled_shutdown": false
+      },
+      "evidence_directory": "F:/LoraxCustomTrees-validation/2026-11-20/forge112-determinism/server",
+      "reason": "Native log/JAR sharing errors on Btrfs-backed drive; NTFS run passed",
+      "counted_as_pass": false
+    }
+  ]
+}

@@ -33,8 +33,18 @@ public class ExportCommand extends BaseCommand {
         if (sender instanceof Player) {
             if (sender.hasPermission("lorax.export")) {
                 Player player = (Player) sender;
+                if (args.length != 2 || !args[1].matches("[A-Za-z0-9_-]{1,80}")) {
+                    sender.sendMessage("§cUsage: /lorax export <name> (letters, numbers, underscores and hyphens)");
+                    return false;
+                }
                 String objectName = args[1];
-                Region region = getCurrentRegion(player);
+                Region region;
+                try {
+                    region = getCurrentRegion(player);
+                } catch (RuntimeException error) {
+                    sender.sendMessage("§cSelect a complete WorldEdit region first.");
+                    return false;
+                }
 
                 CustomObjectCreator creator = new CustomObjectCreator(region.getBoundingBox(), region.getCenter());
                 CustomObject object = creator.create(objectName, player.getWorld());

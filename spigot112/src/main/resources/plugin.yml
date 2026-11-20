@@ -1,0 +1,13 @@
+name: Lorax
+version: '${version}'
+main: org.infotoast.lorax.spigot112.LegacyLorax
+load: STARTUP
+softdepend: [WorldEdit]
+commands:
+  lorax:
+    description: Lorax custom tree commands
+permissions:
+  lorax.spawn:
+    default: op
+  lorax.export:
+    default: op

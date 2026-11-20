@@ -31,7 +31,7 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ env.BUILD_JAVA }}
-      - run: ./gradlew build --no-daemon
+      - run: ./gradlew :build :common:check --no-daemon
       - uses: https://data.forgejo.org/actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
         with:
           name: plugin

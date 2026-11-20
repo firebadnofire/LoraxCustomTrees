@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.infotoast.lorax.command.CentralCommandExecutor;
@@ -36,8 +37,11 @@ public final class Lorax extends JavaPlugin {
         try {
             loader.loadObjects();
         } catch (CustomObjectLoadingFailedException e) {
-            e.printStackTrace();
+            getLogger().log(java.util.logging.Level.SEVERE, "Lorax asset initialization failed", e);
+            getServer().getPluginManager().disablePlugin(this);
+            return;
         }
+        logger.info("Loaded " + loader.getStructures().size() + " bundled structures.");
         logger.info("Latching lorax engine to run when world loading begins.");
         getCommand("lorax").setExecutor(new CentralCommandExecutor(this));
         getServer().getPluginManager().registerEvents(new WorldListener(), this);
@@ -63,7 +67,7 @@ public final class Lorax extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        WorldImproved.WORLDS.clear();
     }
 
     public static String colorize(String message) {
@@ -71,10 +75,14 @@ public final class Lorax extends JavaPlugin {
     }
 
     private class WorldListener implements Listener {
+        @EventHandler
+        public void onWorldUnload(WorldUnloadEvent event) {
+            WorldImproved.WORLDS.remove(event.getWorld().getName());
+        }
         @EventHandler(priority= EventPriority.LOW)
         public void onWorldInit(WorldInitEvent evt) {
             getLogger().info("World " + evt.getWorld().getName() + " is being initialized...");
-            if (getConfig().getBoolean("enable-populator")) {
+            if (evt.getWorld().getEnvironment() == org.bukkit.World.Environment.NORMAL && getConfig().getBoolean("enable-populator")) {
                 if (getConfig().getBoolean("select-worlds"))
                     if (!getConfig().getStringList("enabled-worlds").contains(evt.getWorld().getName()))
                         return;

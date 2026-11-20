@@ -1,0 +1,15 @@
+modLoader="javafml"
+loaderVersion="[65,66)"
+license="All Rights Reserved"
+[[mods]]
+modId="loraxprobe"
+version="1"
+displayName="Lorax Integration Probe"
+displayTest="IGNORE_ALL_VERSION"
+[[dependencies.loraxprobe]]
+modId="lorax"
+mandatory=true
+versionRange="[6.2]"
+ordering="AFTER"
+side="SERVER"
+

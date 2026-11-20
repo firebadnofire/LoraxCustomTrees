@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:3.0.197' }
+}
+apply plugin: 'net.minecraftforge.gradle'
+
+group = 'org.infotoast'
+version = '6.2'
+archivesBaseName = 'LoraxCustomTrees-forge-1.12.2'
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava.options.encoding = 'UTF-8'
+
+minecraft { mappings channel: 'snapshot', version: '20171003-1.12' }
+dependencies { minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2864' }
+sourceSets.main.java.srcDir '../common/src/main/java'
+processResources {
+    from('../src/main/resources') { include '*.bo5' }
+    inputs.property 'version', project.version
+    filesMatching('mcmod.info') { expand version: project.version }
+}
+jar.finalizedBy('reobfJar')
+
+sourceSets {
+    integrationProbe {
+        java.srcDir 'src/probe/java'
+        resources.srcDir 'src/probe/resources'
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+    }
+}
+task integrationProbeJar(type: Jar, dependsOn: integrationProbeClasses) {
+    baseName = 'LoraxIntegrationProbe-forge112'
+    destinationDir = file('build/test-libs')
+    from sourceSets.integrationProbe.output
+}
+reobf { integrationProbeJar {} }
+integrationProbeJar.finalizedBy('reobfIntegrationProbeJar')

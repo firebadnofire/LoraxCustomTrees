@@ -1,0 +1,18 @@
+plugins { id 'java-library' }
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+tasks.withType(JavaCompile).configureEach { options.release = 8 }
+sourceSets { contractTest { java.srcDir 'src/test/java' } }
+sourceSets.test.java.setSrcDirs([])
+sourceSets.contractTest.compileClasspath += sourceSets.main.output
+sourceSets.contractTest.runtimeClasspath += sourceSets.main.output
+
+tasks.register('engineTest', JavaExec) {
+    dependsOn contractTestClasses
+    classpath = sourceSets.contractTest.runtimeClasspath
+    mainClass = 'org.infotoast.lorax.common.EngineTest'
+    args rootProject.file('src/main/resources').absolutePath
+}
+check.dependsOn engineTest

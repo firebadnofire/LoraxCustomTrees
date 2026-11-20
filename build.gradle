@@ -27,11 +27,30 @@ repositories {
 }
 
 dependencies {
+    implementation project(':common')
     compileOnly 'io.papermc.paper:paper-api:26.3.build.+'
     compileOnly ("com.sk89q.worldedit:worldedit-core:7.4.6") {
         exclude group: "org.yaml"
     }
     compileOnly "com.sk89q.worldedit:worldedit-bukkit:7.4.6"
+}
+
+tasks.named('jar') {
+    from project(':common').sourceSets.main.output
+}
+
+sourceSets {
+    integrationProbe {
+        java.srcDir 'tools/paper-probe/src'
+        resources.srcDir 'tools/paper-probe/resources'
+        compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    }
+}
+tasks.register('integrationProbeJar', Jar) {
+    dependsOn integrationProbeClasses
+    archiveBaseName = 'LoraxIntegrationProbe'
+    destinationDirectory = layout.buildDirectory.dir('test-libs')
+    from sourceSets.integrationProbe.output
 }
 
 def targetJavaVersion = 25
@@ -52,7 +71,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 processResources {
-    def props = [version: version]
+    def props = [version: version, apiVersion: '1.21']
     inputs.properties props
     filteringCharset 'UTF-8'
     filesMatching('plugin.yml') {

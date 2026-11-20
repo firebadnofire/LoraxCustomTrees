@@ -37,11 +37,11 @@ public class ObjectLocation {
             case 0:
                 return this;
             case 1:
-                return new ObjectLocation(-x, y, z);
+                return new ObjectLocation(-z, y, x);
             case 2:
                 return new ObjectLocation(-x, y, -z);
             case 3:
-                return new ObjectLocation(x, y, -z);
+                return new ObjectLocation(z, y, -x);
             default:
                 throw new IllegalArgumentException("Rotation must be between 0 and 3");
         }

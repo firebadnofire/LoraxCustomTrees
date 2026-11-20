@@ -111,6 +111,14 @@ gradle-app.setting
 
 **/build/
 
+# ForgeGradle development-server directories
+runs/
+
+# Eclipse project metadata
+.classpath
+.project
+.settings/
+
 # Common working directory
 run/
 
@@ -121,3 +129,4 @@ gradle.properties
 
 src/main/resources/EasyTrees.zip
 /Easy Trees/
+tools/client-probe/node_modules/

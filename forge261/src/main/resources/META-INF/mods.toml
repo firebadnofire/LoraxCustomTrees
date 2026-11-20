@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[62,63)"
+license="All Rights Reserved; see repository LICENSE.md"
+[[mods]]
+modId="lorax"
+version="${version}"
+displayName="Lorax Custom Trees"
+authors="Frank from Info Toast, CoolScreenName"
+displayTest="IGNORE_ALL_VERSION"
+description='''Native server-side custom tree generation.'''
+[[dependencies.lorax]]
+modId="forge"
+mandatory=true
+versionRange="[62.0.9,63)"
+ordering="NONE"
+side="SERVER"
+[[dependencies.lorax]]
+modId="minecraft"
+mandatory=true
+versionRange="[26.1]"
+ordering="NONE"
+side="SERVER"
+
+
+

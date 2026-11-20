@@ -29,10 +29,15 @@ public class SpawnCommand extends BaseCommand {
                 WorldImproved world = WorldImproved.get(loc.getWorld());
 
                 CustomObject toSpawn = Lorax.loader.getCustomObject(args[1]);
+                if (toSpawn == null) {
+                    sender.sendMessage("§cUnknown structure: " + args[1]);
+                    return false;
+                }
                 int rotation;
                 if (args.length == 3) {
                     try {
                         rotation = Integer.parseInt(args[2]);
+                        if (rotation < 0 || rotation > 3) throw new NumberFormatException("rotation outside 0..3");
                     } catch (NumberFormatException e) {
                         sender.sendMessage(Lorax.colorize(Lorax.plugin.getConfig().getString("messages.invalid-rotation")));
                         sender.sendMessage("§4Usage: " + getUsage());
@@ -43,7 +48,12 @@ public class SpawnCommand extends BaseCommand {
                 }
 
                 PlacedObject obj = toSpawn.getPlacedObject(objectCenter, rotation, world);
-                obj.placeAll();
+                try {
+                    obj.placeAll();
+                } catch (IllegalArgumentException | IllegalStateException error) {
+                    sender.sendMessage("§cStructure was not placed: " + error.getMessage());
+                    return false;
+                }
 
                 sender.sendMessage(Lorax.colorize(Lorax.plugin.getConfig().getString("messages.spawn-success")));
                 return true;

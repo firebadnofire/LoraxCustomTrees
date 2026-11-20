@@ -1,9 +1,10 @@
 name: Lorax
 version: '${version}'
 main: org.infotoast.lorax.Lorax
-api-version: 1.21
+api-version: '${apiVersion}'
 prefix: Lorax
 load: STARTUP
+softdepend: [WorldEdit]
 authors: [ Frank, CoolScreenName ]
 description: Custom Trees Plugin for Minecraft
 website: https://infotoast.org

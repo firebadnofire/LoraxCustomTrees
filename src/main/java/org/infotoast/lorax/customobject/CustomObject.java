@@ -6,12 +6,17 @@ import org.infotoast.lorax.customobject.datatype.CustomObjectItem;
 import org.infotoast.lorax.customobject.datatype.ObjectLocation;
 
 import java.util.ArrayList;
+import org.infotoast.lorax.common.Structure;
+import org.infotoast.lorax.common.StructureReader;
+import java.io.StringReader;
+import java.io.IOException;
 
 public class CustomObject {
     protected final String objectName;
     protected final ArrayList<CustomObjectItem> items;
     protected final ArrayList<CustomObjectCheck> checks;
     protected final CustomObjectSettings settings;
+    private Structure definition;
 
     public CustomObject(String objectName, ArrayList<CustomObjectItem> items, ArrayList<CustomObjectCheck> checks, CustomObjectSettings settings) {
         this.objectName = objectName;
@@ -32,8 +37,25 @@ public class CustomObject {
         return settings;
     }
 
+    public Structure getDefinition() {
+        if (definition == null) {
+            try {
+                definition = StructureReader.read(objectName, new StringReader(toString()));
+            } catch (IOException error) {
+                throw new IllegalArgumentException("Invalid structure " + objectName, error);
+            }
+        }
+        return definition;
+    }
+
+    public void setDefinition(Structure definition) {
+        this.definition = definition;
+    }
+
     public PlacedObject getPlacedObject(ObjectLocation centerLocation, int rotation, WorldImproved world) {
-        return new PlacedObject(objectName, settings, items, checks, centerLocation, rotation, world);
+        PlacedObject placed = new PlacedObject(objectName, settings, items, checks, centerLocation, rotation, world);
+        placed.setDefinition(getDefinition());
+        return placed;
     }
 
     @Override

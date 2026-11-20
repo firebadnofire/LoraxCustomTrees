@@ -1,0 +1,38 @@
+plugins { id 'java' }
+group = rootProject.group
+version = rootProject.version
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+dependencies {
+    implementation project(':common')
+    // The archived shaded API contains its historical chat API dependency.
+    // It is compile-only and never included in the distribution.
+    compileOnly('org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT:shaded') { transitive = false }
+}
+java { toolchain.languageVersion = JavaLanguageVersion.of(25) }
+tasks.withType(JavaCompile).configureEach { options.release = 8 }
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('plugin.yml') { expand version: project.version }
+    from(rootProject.file('src/main/resources')) { include '*.bo5', 'config.yml' }
+}
+jar {
+    archiveBaseName = 'LoraxCustomTrees-spigot-1.12.2'
+    from project(':common').sourceSets.main.output
+}
+sourceSets {
+    integrationProbe {
+        java.srcDir 'src/probe/java'
+        resources.srcDir 'src/probe/resources'
+        compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    }
+}
+tasks.register('integrationProbeJar', Jar) {
+    dependsOn integrationProbeClasses
+    archiveBaseName = 'LoraxIntegrationProbe-spigot112'
+    destinationDirectory = layout.buildDirectory.dir('test-libs')
+    from sourceSets.integrationProbe.output
+}

@@ -21,8 +21,9 @@ public class CentralCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 0) {
+        if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
             sendHelp(sender);
+            return true;
         }
 
         if (args[0].equalsIgnoreCase("export")) {

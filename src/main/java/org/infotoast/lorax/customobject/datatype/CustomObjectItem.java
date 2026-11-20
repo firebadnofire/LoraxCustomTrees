@@ -1,13 +1,8 @@
 package org.infotoast.lorax.customobject.datatype;
 
-import org.bukkit.generator.LimitedRegion;
-import org.infotoast.lorax.WorldImproved;
-
+/** Serialization model for optional WorldEdit export; contains no world access. */
 public interface CustomObjectItem {
-    public String getName();
-    public ObjectLocation getLocation();
-    public void place(ObjectLocation center, int rotation, WorldImproved world, LimitedRegion reg);
-    public void place(ObjectLocation center, int rotation, WorldImproved world);
-    @Override
-    public String toString();
+    String getName();
+    ObjectLocation getLocation();
+    String toString();
 }

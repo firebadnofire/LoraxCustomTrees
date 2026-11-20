@@ -1,0 +1,42 @@
+plugins { id 'java' }
+group = rootProject.group
+version = rootProject.version
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://maven.enginehub.org/repo/' }
+}
+dependencies {
+    implementation project(':common')
+    compileOnly('org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT:shaded') { transitive = false }
+    compileOnly('com.sk89q.worldedit:worldedit-core:7.2.15') { transitive = false }
+    compileOnly('com.sk89q.worldedit:worldedit-bukkit:7.2.15') { transitive = false }
+    compileOnly 'org.jetbrains:annotations:24.1.0'
+}
+java { toolchain.languageVersion = JavaLanguageVersion.of(25) }
+tasks.withType(JavaCompile).configureEach { options.release = 17 }
+sourceSets.main {
+    java.srcDir rootProject.file('src/main/java')
+    resources.srcDir rootProject.file('src/main/resources')
+}
+processResources {
+    inputs.properties(version: project.version, apiVersion: '1.20')
+    filesMatching('plugin.yml') { expand version: project.version, apiVersion: '1.20' }
+}
+jar {
+    archiveBaseName = 'LoraxCustomTrees-spigot-mc1.20-26.3'
+    from project(':common').sourceSets.main.output
+}
+sourceSets {
+    integrationProbe {
+        java.srcDir rootProject.file('tools/paper-probe/src')
+        resources.srcDir rootProject.file('tools/paper-probe/resources')
+        compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    }
+}
+tasks.register('integrationProbeJar', Jar) {
+    dependsOn integrationProbeClasses
+    archiveBaseName = 'LoraxIntegrationProbe-modern'
+    destinationDirectory = layout.buildDirectory.dir('test-libs')
+    from sourceSets.integrationProbe.output
+}

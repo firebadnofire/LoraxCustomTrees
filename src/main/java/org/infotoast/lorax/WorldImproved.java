@@ -1,14 +1,8 @@
 package org.infotoast.lorax;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Biome;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.generator.LimitedRegion;
 import org.bukkit.generator.WorldInfo;
-import org.infotoast.lorax.util.Utility;
 
 import java.util.*;
 
@@ -60,55 +54,8 @@ public class WorldImproved {
         return Bukkit.getWorld(worldName);
     }
 
-    public List<Biome> getBiome(int chunkX, int chunkZ, LimitedRegion source) {
-        int rawX;
-        int rawZ;
-        int Y;
-        List biomes = new ArrayList<>();
-        for (int x = 0; x < 16; x++) {
-            for (int z = 0; z < 16; z++) {
-                rawX = chunkX * 16 + x;
-                rawZ = chunkZ * 16 + z;
-                Y = Utility.getHeightAt(this, rawX, rawZ, source);
-                if (Y < 1) continue;
-                synchronized(getWorld().getBlockAt(rawX, Y, rawZ)) {
-                    if (!biomes.contains(source.getBiome(rawX, Y, rawZ)))
-                        biomes.add(source.getBiome(rawX,Y,rawZ));
-                }
-            }
-        }
-        return biomes;
-    }
 
-    public List<Biome> getBiome(List<Material> okMats, Chunk source) {
-        int Y;
-        List biomes = new ArrayList<>();
-        for (int x = 0; x < 16; x++) {
-            for (int z = 0; z < 16; z++) {
-                for (Y = this.getWorld().getMaxHeight() - 1; okMats.contains(source.getBlock(x, Y, z).getType()) && Y > -1; Y--);
-                if (Y < 1) continue;
-                if (!biomes.contains(source.getBlock(x, Y, z).getBiome()))
-                    biomes.add(source.getBlock(x,Y,z).getBiome());
-            }
-        }
-        return biomes;
-    }
 
-    public void setMaterial(int x, int y, int z, Material block) {
-        synchronized (getWorld().getBlockAt(x, y, z)) {
-            getWorld().getBlockAt(x, y, z).setType(block);
-        }
-    }
 
-    public Material getMaterial(int x, int y, int z) {
-        synchronized (getWorld().getBlockAt(x, y, z)) {
-            return getWorld().getBlockAt(x, y, z).getType();
-        }
-    }
 
-    public void setMaterial(int x, int y, int z, BlockData block) {
-        synchronized (getWorld().getBlockAt(x, y, z)) {
-            getWorld().getBlockAt(x, y, z).setBlockData(block);
-        }
-    }
 }

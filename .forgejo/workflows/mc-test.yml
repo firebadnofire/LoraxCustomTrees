@@ -1,0 +1,392 @@
+# Forgejo Actions 17.x: manually boot a real Minecraft server and check that
+# the selected JAR loads. This is a runtime smoke test, not gameplay E2E testing.
+name: Minecraft server smoke test
+
+on:
+  workflow_dispatch:
+    inputs:
+      server_type:
+        description: 'Server implementation to boot'
+        type: choice
+        required: true
+        default: paper
+        options:
+          - paper
+          - spigot
+          - forge
+      build_directory:
+        description: 'Gradle build directory: ., forge112, forge120, forge1206, forge121, forge12110, forge261, forge262, forge26'
+        type: string
+        default: '.'
+      probe_artifact_path:
+        description: 'Exact test-only probe JAR path; blank runs startup checks only'
+        type: string
+        default: ''
+      probe_task:
+        description: 'Test-only probe Gradle task, used when probe_artifact_path is set'
+        type: string
+        default: integrationProbeJar
+      mc_version:
+        description: 'Minecraft version (auto = current repo target; e.g. 1.12.2, 1.21.11, 26.3)'
+        type: string
+        required: true
+        default: auto
+      build_task:
+        description: 'One Gradle task to build the artifact'
+        type: string
+        required: true
+        default: ':build'
+      artifact_path:
+        description: 'Optional exact path to a plugin/mod JAR; blank = auto-detect'
+        type: string
+        required: false
+        default: ''
+      forge_build:
+        description: 'Optional exact Forge build number; blank = latest/recommended'
+        type: string
+        required: false
+        default: ''
+      build_java:
+        description: 'JDK for Gradle: auto, 8, 17, 21, or 25'
+        type: string
+        required: true
+        default: auto
+      server_java:
+        description: 'JDK for Minecraft: auto, 8, 16, 17, 21, or 25'
+        type: string
+        required: true
+        default: auto
+      expected_id:
+        description: 'Optional plugin name / Forge mod ID to verify'
+        type: string
+        required: false
+        default: ''
+      startup_timeout:
+        description: 'Seconds allowed for server startup'
+        type: number
+        required: true
+        default: 600
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    # Existing runner's ubuntu-latest label must provide a container job.
+    # Node is present for Forgejo JavaScript-based actions.
+    container:
+      image: node:24-bookworm
+    timeout-minutes: 90
+    env:
+      SERVER_TYPE: ${{ inputs.server_type }}
+      MC_VERSION: ${{ inputs.mc_version }}
+      BUILD_TASK: ${{ inputs.build_task }}
+      BUILD_DIRECTORY: ${{ inputs.build_directory }}
+      PROBE_ARTIFACT_PATH: ${{ inputs.probe_artifact_path }}
+      PROBE_TASK: ${{ inputs.probe_task }}
+      ARTIFACT_PATH: ${{ inputs.artifact_path }}
+      FORGE_BUILD: ${{ inputs.forge_build }}
+      REQUESTED_BUILD_JAVA: ${{ inputs.build_java }}
+      REQUESTED_SERVER_JAVA: ${{ inputs.server_java }}
+      EXPECTED_ID: ${{ inputs.expected_id }}
+      STARTUP_TIMEOUT: ${{ inputs.startup_timeout }}
+    steps:
+      - name: Install runner utilities
+        run: |
+          set -eu
+          apt-get update
+          apt-get install -y --no-install-recommends git curl ca-certificates python3 unzip
+      - uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Validate parameters and select Java versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$SERVER_TYPE" == spigot || "$SERVER_TYPE" == paper || "$SERVER_TYPE" == forge ]] || exit 1
+          [[ "$BUILD_DIRECTORY" =~ ^(\.|forge112|forge120|forge1206|forge121|forge12110|forge261|forge262|forge26)$ ]] || exit 1
+          [[ "$PROBE_TASK" =~ ^:?[a-zA-Z][a-zA-Z0-9:_-]*$ ]] || exit 1
+          if [[ "$MC_VERSION" == auto ]]; then
+            case "${GITHUB_REPOSITORY}" in
+              */DropsOverhaul) MC_VERSION=1.21.11 ;;
+              */LoraxCustomTrees)
+                case "$BUILD_DIRECTORY" in
+                  forge112) MC_VERSION=1.12.2 ;;
+                  forge120) MC_VERSION=1.20 ;;
+                  forge1206) MC_VERSION=1.20.6 ;;
+                  forge121) MC_VERSION=1.21 ;;
+                  forge12110) MC_VERSION=1.21.10 ;;
+                  forge261) MC_VERSION=26.1 ;;
+                  forge262) MC_VERSION=26.2 ;;
+                  .|forge26) MC_VERSION=26.3 ;;
+                esac ;;
+              *) echo 'Specify mc_version for this repository' >&2; exit 1 ;;
+            esac
+            echo "MC_VERSION=$MC_VERSION" >> "$GITHUB_ENV"
+          fi
+          [[ "$MC_VERSION" =~ ^[0-9]{1,2}\.[0-9]{1,2}(\.[0-9]{1,2})?$ ]] || { echo 'Invalid MC version' >&2; exit 1; }
+          [[ "$BUILD_TASK" =~ ^:?[a-zA-Z][a-zA-Z0-9:_-]*$ ]] || { echo 'Specify one Gradle task name, not a shell command' >&2; exit 1; }
+          [[ -z "$FORGE_BUILD" || "$FORGE_BUILD" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit 1
+          [[ "$STARTUP_TIMEOUT" =~ ^[0-9]+$ ]] && (( STARTUP_TIMEOUT >= 30 && STARTUP_TIMEOUT <= 2400 )) || exit 1
+          case "${REQUESTED_BUILD_JAVA}" in
+            auto)
+              case "${GITHUB_REPOSITORY}" in
+                */DropsOverhaul) BUILD_JAVA=21 ;;
+                */LoraxCustomTrees) if [[ "$BUILD_DIRECTORY" == forge112 ]]; then BUILD_JAVA=8; elif [[ "$BUILD_DIRECTORY" == forge120 ]]; then BUILD_JAVA=17; else BUILD_JAVA=25; fi ;;
+                *) echo 'Set build_java for this repository' >&2; exit 1 ;;
+              esac ;;
+            8|17|21|25) BUILD_JAVA="$REQUESTED_BUILD_JAVA" ;;
+            *) echo 'Unsupported build JDK' >&2; exit 1 ;;
+          esac
+          if [[ "$REQUESTED_SERVER_JAVA" == auto ]]; then
+            SERVER_JAVA=$(python3 - "$MC_VERSION" <<'PY'
+          import sys
+          v = list(map(int, sys.argv[1].split('.')))
+          if v[0] >= 26: print(25)
+          elif v[0] == 1 and v[1] <= 16: print(8)
+          elif v[0] == 1 and v[1] == 17: print(16)
+          elif v[0] == 1 and v[1] in (18, 19): print(17)
+          elif v[0] == 1 and v[1] == 20: print(21 if len(v) >= 3 and v[2] >= 5 else 17)
+          elif v[0] == 1 and v[1] == 21: print(21)
+          else: sys.exit('Unknown Java mapping: provide server_java explicitly')
+          PY
+            )
+          else
+            SERVER_JAVA="$REQUESTED_SERVER_JAVA"
+            [[ "$SERVER_JAVA" =~ ^(8|16|17|21|25)$ ]] || exit 1
+          fi
+          printf 'BUILD_JAVA=%s\nSERVER_JAVA=%s\n' "$BUILD_JAVA" "$SERVER_JAVA" >> "$GITHUB_ENV"
+          echo "Testing $SERVER_TYPE MC $MC_VERSION (build JDK $BUILD_JAVA, server JDK $SERVER_JAVA)"
+      - name: Set up build JDK
+        uses: https://data.forgejo.org/actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880
+        with:
+          distribution: temurin
+          java-version: ${{ env.BUILD_JAVA }}
+      - name: Compile selected project
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd "$BUILD_DIRECTORY" && bash ./gradlew "$BUILD_TASK" --no-daemon)
+          if [[ -n "$PROBE_ARTIFACT_PATH" ]]; then
+            (cd "$BUILD_DIRECTORY" && bash ./gradlew "$PROBE_TASK" --no-daemon)
+            [[ -f "$PROBE_ARTIFACT_PATH" ]] || { echo 'Probe JAR not produced' >&2; exit 1; }
+          fi
+      - name: Select and inspect distributable
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ci-distribution mc-test-logs
+          python3 - <<'PY'
+          import glob, json, os, pathlib, re, shutil, sys, zipfile
+          kind = os.environ['SERVER_TYPE']
+          explicit = os.environ['ARTIFACT_PATH'].strip()
+          paths = [pathlib.Path(explicit)] if explicit else list((pathlib.Path(os.environ['BUILD_DIRECTORY']) / 'build/libs').glob('*.jar'))
+          paths = [p for p in paths if p.is_file() and not p.is_symlink() and not re.search(r'-(?:sources|javadoc|tests)\.jar$', p.name)]
+          candidates = []
+          for p in paths:
+              with zipfile.ZipFile(p) as z:
+                  names = set(z.namelist())
+                  if kind in ('spigot', 'paper'):
+                      if 'plugin.yml' not in names: continue
+                      text = z.read('plugin.yml').decode('utf-8', 'replace')
+                      match = re.search(r'^name:\s*["\']?([^"\'\r\n#]+)', text, re.M)
+                      identity = match.group(1).strip() if match else ''
+                  else:
+                      metadata = next((n for n in ('META-INF/mods.toml', 'mcmod.info') if n in names), None)
+                      if not metadata: continue
+                      text = z.read(metadata).decode('utf-8', 'replace')
+                      match = re.search(r'\bmodId\s*=\s*["\']([^"\']+)', text) or re.search(r'["\']modid["\']\s*:\s*["\']([^"\']+)', text)
+                      identity = match.group(1) if match else ''
+                  candidates.append((p, identity))
+          if len(candidates) != 1:
+              print(f'Expected exactly one {kind} artifact, found {len(candidates)}: {candidates}', file=sys.stderr)
+              print('Set artifact_path to the correct version-specific JAR, or build a single selected target.', file=sys.stderr)
+              sys.exit(1)
+          path, found_id = candidates[0]
+          expected = os.environ['EXPECTED_ID'].strip() or found_id
+          if not expected or not re.fullmatch(r'[A-Za-z0-9_.-]+', expected):
+              sys.exit('Cannot determine plugin name/mod ID: set expected_id')
+          shutil.copy2(path, pathlib.Path('ci-distribution') / path.name)
+          pathlib.Path('mc-test-identity.txt').write_text(expected)
+          print(f'Artifact: {path} | declared {kind} identity: {found_id!r} | expecting: {expected!r}')
+          PY
+      - name: Set up Minecraft server JDK
+        uses: https://data.forgejo.org/actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880
+        with:
+          distribution: temurin
+          java-version: ${{ env.SERVER_JAVA }}
+      - name: Install, boot, probe and stop actual server
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p mc-test-server mc-test-logs
+          plugin=$(find ci-distribution -maxdepth 1 -type f -name '*.jar' -print -quit)
+          identity=$(cat mc-test-identity.txt)
+          [[ -n "$plugin" && -n "$identity" ]] || exit 1
+          cat > mc-test-server/server.properties <<'PROPERTIES'
+          server-ip=127.0.0.1
+          server-port=25565
+          online-mode=false
+          white-list=true
+          max-players=1
+          view-distance=2
+          simulation-distance=2
+          generate-structures=false
+          spawn-protection=0
+          enable-rcon=false
+          level-type=minecraft:flat
+          PROPERTIES
+          echo 'eula=true' > mc-test-server/eula.txt
+          if [[ "$SERVER_TYPE" == paper ]]; then
+            mkdir -p mc-test-server/plugins
+            cp -- "$plugin" mc-test-server/plugins/
+            python3 - <<'PY'
+          import hashlib, json, os, pathlib, urllib.request
+          url = 'https://fill.papermc.io/v3/projects/paper/versions/' + os.environ['MC_VERSION'] + '/builds/latest'
+          request = urllib.request.Request(url, headers={'User-Agent':'Lorax-Compatibility-Tests/1.0'})
+          with urllib.request.urlopen(request, timeout=120) as response: metadata = json.load(response)
+          pathlib.Path('mc-test-logs/paper-source.json').write_text(json.dumps(metadata, indent=2))
+          download = metadata['downloads']['server:default']
+          with urllib.request.urlopen(download['url'], timeout=120) as response: data = response.read()
+          if hashlib.sha256(data).hexdigest() != download['checksums']['sha256']: raise SystemExit('Paper checksum mismatch')
+          pathlib.Path('mc-test-server/server.jar').write_bytes(data)
+          PY
+          elif [[ "$SERVER_TYPE" == spigot ]]; then
+            mkdir -p mc-spigot-build mc-test-server/plugins
+            cp -- "$plugin" mc-test-server/plugins/
+            curl -fL --retry 3 --silent --show-error -o mc-spigot-build/BuildTools.jar 'https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar'
+            (cd mc-spigot-build && java -jar BuildTools.jar --rev "$MC_VERSION") > mc-test-logs/installer.log 2>&1 || { tail -n 100 mc-test-logs/installer.log; exit 1; }
+            jarfile="mc-spigot-build/spigot-${MC_VERSION}.jar"
+            [[ -f "$jarfile" ]] || { echo "BuildTools did not produce $jarfile" >&2; exit 1; }
+            cp -- "$jarfile" mc-test-server/server.jar
+          else
+            mkdir -p mc-test-server/mods
+            cp -- "$plugin" mc-test-server/mods/
+            if [[ -z "$FORGE_BUILD" ]]; then
+              curl -fL --retry 3 --silent --show-error -o mc-test-logs/promotions.json 'https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json'
+              FORGE_BUILD=$(python3 - "$MC_VERSION" <<'PY'
+          import json, sys
+          promos = json.load(open('mc-test-logs/promotions.json'))['promos']
+          version = sys.argv[1]
+          result = promos.get(version + '-recommended') or promos.get(version + '-latest')
+          if not result: sys.exit('No advertised Forge build for MC ' + version + '; specify forge_build or investigate version support')
+          print(result)
+          PY
+              )
+            fi
+            mvnver="${MC_VERSION}-${FORGE_BUILD}"
+            url="https://maven.minecraftforge.net/net/minecraftforge/forge/${mvnver}/forge-${mvnver}-installer.jar"
+            curl -fL --retry 3 --silent --show-error -o mc-test-server/forge-installer.jar "$url"
+            (cd mc-test-server && java -jar forge-installer.jar --installServer) > mc-test-logs/installer.log 2>&1 || { tail -n 100 mc-test-logs/installer.log; exit 1; }
+            rm -f mc-test-server/forge-installer.jar
+            if [[ -f mc-test-server/run.sh ]]; then
+              printf '%s\n' '-Xms256M' '-Xmx4096M' > mc-test-server/user_jvm_args.txt
+            else
+              legacy=$(find mc-test-server -maxdepth 1 -type f -name "forge-${MC_VERSION}-*.jar" ! -name '*installer*' | head -n 1)
+              [[ -n "$legacy" ]] || { echo 'Forge install has neither run.sh nor executable Forge JAR' >&2; exit 1; }
+              basename -- "$legacy" > mc-test-server/forge-launch-jar.txt
+            fi
+          fi
+
+          if [[ -n "$PROBE_ARTIFACT_PATH" ]]; then
+            if [[ "$SERVER_TYPE" == forge ]]; then destination=mods; else destination=plugins; fi
+            cp -- "$PROBE_ARTIFACT_PATH" "mc-test-server/$destination/"
+          fi
+          # The server runs only inside this ephemeral job container, bound to loopback.
+          cd mc-test-server
+          mkfifo command.fifo
+          exec 3<>command.fifo
+          if [[ "$SERVER_TYPE" != forge ]]; then
+            setsid java -Xms256M -Xmx4096M -jar server.jar nogui < command.fifo > server-console.log 2>&1 &
+          elif [[ -f run.sh ]]; then
+            setsid bash run.sh nogui < command.fifo > server-console.log 2>&1 &
+          else
+            launcher=$(cat forge-launch-jar.txt)
+            setsid java -Xms256M -Xmx4096M -jar "$launcher" nogui < command.fifo > server-console.log 2>&1 &
+          fi
+          pid=$!
+          cleanup() {
+            rc=$?
+            trap - EXIT
+            printf 'stop\n' >&3 2>/dev/null || true
+            for i in $(seq 1 30); do kill -0 "$pid" 2>/dev/null || break; sleep 1; done
+            if kill -0 "$pid" 2>/dev/null; then kill -- -"$pid" 2>/dev/null || true; rc=1; echo 'Controlled shutdown failed' >&2; fi
+            wait "$pid" || rc=1
+            cp server-console.log ../mc-test-logs/server-console.log 2>/dev/null || true
+            if [[ -f logs/latest.log ]]; then cp logs/latest.log ../mc-test-logs/latest.log; fi
+            if [[ -d crash-reports ]]; then cp -R crash-reports ../mc-test-logs/; fi
+            if [[ -d lorax-test ]]; then cp -R lorax-test ../mc-test-logs/; fi
+            if [[ -d plugins/LoraxIntegrationProbe ]]; then cp -R plugins/LoraxIntegrationProbe ../mc-test-logs/; fi
+            exit "$rc"
+          }
+          trap cleanup EXIT
+          ready=0
+          for ((t=0; t<STARTUP_TIMEOUT; t+=2)); do
+            if grep -Eq 'Done \([0-9.,]+s\)!|Done! For help' server-console.log 2>/dev/null; then ready=1; break; fi
+            if ! kill -0 "$pid" 2>/dev/null; then echo 'Server exited before ready' >&2; tail -n 100 server-console.log; exit 1; fi
+            sleep 2
+          done
+          if (( ! ready )); then echo "Server failed to reach Done within ${STARTUP_TIMEOUT}s" >&2; tail -n 100 server-console.log; exit 1; fi
+          echo "Server ready: $SERVER_TYPE MC $MC_VERSION"
+          if [[ -n "$PROBE_ARTIFACT_PATH" ]]; then
+            if [[ "$SERVER_TYPE" == forge ]]; then result=lorax-test/result.json; else result=plugins/LoraxIntegrationProbe/result.json; fi
+            for ((t=0; t<STARTUP_TIMEOUT; t+=2)); do
+              [[ ! -f "$result" ]] || break
+              kill -0 "$pid" 2>/dev/null || { echo 'Server exited during generation probe' >&2; exit 1; }
+              sleep 2
+            done
+            python3 - "$result" <<'PY'
+          import json, pathlib, sys
+          result = json.loads(pathlib.Path(sys.argv[1]).read_text())
+          if result.get('passed') is not True or result.get('assets') != 40 or result.get('assertions', 0) < 100:
+              raise SystemExit('Generation probe failed: ' + str(result))
+          if 'Loaded 40 bundled structures' not in pathlib.Path('server-console.log').read_text(errors='replace'):
+              raise SystemExit('Lorax initialization not proven')
+          print('GENERATION PROBE PASSED:', result)
+          PY
+            exit 0
+          fi
+          before=$(stat -c '%s' server-console.log)
+          if [[ "$SERVER_TYPE" != forge ]]; then
+            printf 'plugins\n' >&3
+            sleep 6
+            tail -c +"$((before+1))" server-console.log > ../mc-test-logs/probe.log
+            python3 - "$identity" ../mc-test-logs/probe.log <<'PY'
+          import re, sys
+          text = open(sys.argv[2], errors='replace').read()
+          text = re.sub(r'\x1b\[[0-9;]*m|§[0-9a-fk-or]', '', text, flags=re.I)
+          result = re.search(r'Plugins?\s*\(\d+\)\s*:\s*([^\r\n]+)', text, re.I)
+          if not result or not re.search(r'(?<![\w.-])' + re.escape(sys.argv[1]) + r'(?![\w.-])', result.group(1), re.I):
+              sys.exit('Plugin not present in /plugins output, or command not supported: ' + text[-1000:])
+          print('Verified plugin in /plugins output:', sys.argv[1])
+          PY
+          else
+            printf 'forge mods\n' >&3
+            sleep 6
+            tail -c +"$((before+1))" server-console.log > ../mc-test-logs/probe.log
+            python3 - "$identity" ../mc-test-logs/probe.log server-console.log <<'PY'
+          import re, sys
+          expected = sys.argv[1]
+          probe = open(sys.argv[2], errors='replace').read()
+          full = open(sys.argv[3], errors='replace').read()
+          token = r'(?<![\w.-])' + re.escape(expected) + r'(?![\w.-])'
+          unsupported = bool(re.search(r'Unknown or incomplete command|Unknown command', probe, re.I))
+          if not unsupported and re.search(token, probe, re.I):
+              print('Verified Forge ID in /forge mods output:', expected)
+          else:
+              # Forge 1.12.2 logs the *loaded* mod ID list at SERVER (not
+              # merely a filename seen during discovery). Use only that
+              # exact evidence as a fallback for old Forge without /forge mods.
+              loaded = re.findall(r'Attempting connection with missing mods \[([^\]]+)\] at SERVER', full)
+              if not any(expected.lower() in [part.strip().lower() for part in ids.split(',')] for ids in loaded):
+                  sys.exit('Mod ID not proven loaded by Forge command or legacy FML loaded-mod list: ' + probe[-1000:])
+              print('Verified Forge ID in legacy FML server mod list:', expected)
+          PY
+          fi
+          grep -F 'Loaded 40 bundled structures' server-console.log || { echo 'Lorax did not initialize all assets' >&2; exit 1; }
+          echo "STARTUP ONLY PASSED: $identity on $SERVER_TYPE $MC_VERSION"
+      - name: Upload server and probe logs
+        if: always()
+        uses: https://data.forgejo.org/actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
+        with:
+          name: minecraft-server-logs
+          path: mc-test-logs/
+          if-no-files-found: warn

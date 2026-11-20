@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '7.0.40'
+}
+group = 'org.infotoast'
+version = '6.2'
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+tasks.withType(JavaCompile).configureEach { options.release = 21 }
+sourceSets.main.java.srcDirs '../common/src/main/java', '../forge120/src/main/java'
+minecraft {
+    mappings channel: 'official', version: '1.20.6'
+    runs { register('server') { args '--nogui' } }
+}
+repositories {
+    minecraft.mavenizer(it)
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
+    mavenCentral()
+}
+dependencies {
+    implementation minecraft.dependency('net.minecraftforge:forge:1.20.6-50.2.15')
+}
+processResources {
+    from('../src/main/resources') { include '*.bo5' }
+    inputs.property 'version', project.version
+    filesMatching('META-INF/mods.toml') { expand version: project.version }
+}
+jar { archiveBaseName = 'LoraxCustomTrees-forge-1.20.6' }
+sourceSets {
+    integrationProbe {
+        java.srcDir '../forge120/src/probe/java'
+        resources.srcDir 'src/probe/resources'
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+    }
+}
+tasks.register('integrationProbeJar', Jar) {
+    dependsOn integrationProbeClasses
+    archiveBaseName = 'LoraxIntegrationProbe-forge1206'
+    destinationDirectory = layout.buildDirectory.dir('test-libs')
+    from sourceSets.integrationProbe.output
+}
+
+
+
