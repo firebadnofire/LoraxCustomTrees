@@ -42,8 +42,92 @@ jobs:
             !build/libs/*-tests.jar
           if-no-files-found: error
 
-  release:
+  minecraft-targets:
+    # One target per *real* server version, not an unresolvable version-family alias.
+    # The same main.yml is used by LoraxCustomTrees and DropsOverhaul.
     needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: node:24-bookworm
+    outputs:
+      matrix: ${{ steps.select.outputs.matrix }}
+    steps:
+      - name: Select advertised Minecraft targets
+        id: select
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'JS'
+          const fs = require('node:fs');
+          const targets = [];
+          const add = (server_type, versions, build_task, build_directory = '.', forge_build = '') => {
+            for (const mc_version of versions) {
+              targets.push({server_type, mc_version, build_task, build_directory, forge_build});
+            }
+          };
+          const repo = process.env.GITHUB_REPOSITORY.split('/').pop();
+          switch (repo) {
+            case 'LoraxCustomTrees':
+              // Exact Paper releases from COMPATIBILITY.md.
+              add('paper', ['26.3'], ':build');
+              add('paper', [
+                '1.20', '1.20.1', '1.20.4', '1.20.5', '1.20.6',
+                '1.21', '1.21.10', '1.21.11',
+                '26.1.1', '26.1.2', '26.2'
+              ], ':spigotModern:build');
+
+              // BuildTools aliases 1.20 -> 1.20.1, 1.21 -> 1.21.1,
+              // 26.1 -> 26.1.2; test the produced exact versions instead.
+              add('spigot', ['1.12.2'], ':spigot112:build');
+              add('spigot', [
+                '1.20.1', '1.20.6', '1.21.1', '1.21.10',
+                '26.1.2', '26.2', '26.3'
+              ], ':spigotModern:build');
+
+              // Pin the Forge builds actually advertised and locally evaluated.
+              for (const [mc, dir, forge] of [
+                ['1.12.2', 'forge112', '14.23.5.2864'],
+                ['1.20',   'forge120', '46.0.14'],
+                ['1.20.6', 'forge1206', '50.2.15'],
+                ['1.21',   'forge121', '51.0.33'],
+                ['1.21.10','forge12110','60.1.18'],
+                ['26.1',   'forge261', '62.0.9'],
+                ['26.2',   'forge262', '65.1.6'],
+                ['26.3',   'forge26', '66.1.8']
+              ]) add('forge', [mc], ':build', dir, forge);
+              break;
+            case 'DropsOverhaul':
+              // Only the explicitly known current target; expand from its own
+              // advertised compatibility matrix when that is available.
+              add('paper', ['1.21.11'], ':build');
+              break;
+            default:
+              throw new Error(`Unsupported repository: ${process.env.GITHUB_REPOSITORY}`);
+          }
+          if (targets.length === 0) throw new Error('Empty Minecraft test matrix');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,
+            `matrix=${JSON.stringify({include: targets})}\n`);
+          console.log(`${repo}: checking ${targets.length} exact Minecraft server targets`);
+          for (const t of targets) console.log(`${t.server_type} ${t.mc_version} (${t.build_directory} ${t.build_task})`);
+          JS
+
+  minecraft-smoke:
+    name: ${{ matrix.server_type }} ${{ matrix.mc_version }}
+    needs: minecraft-targets
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.minecraft-targets.outputs.matrix) }}
+    uses: ./.forgejo/workflows/mc-test.yml
+    with:
+      server_type: ${{ matrix.server_type }}
+      mc_version: ${{ matrix.mc_version }}
+      build_directory: ${{ matrix.build_directory }}
+      build_task: ${{ matrix.build_task }}
+      forge_build: ${{ matrix.forge_build }}
+
+  release:
+    needs: [build, minecraft-smoke]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     container:

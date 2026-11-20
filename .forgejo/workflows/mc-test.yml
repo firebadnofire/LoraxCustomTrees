@@ -1,4 +1,4 @@
-# Forgejo Actions 17.x: manually boot a real Minecraft server and check that
+# Forgejo Actions 17.x: boot a real Minecraft server and check that
 # the selected JAR loads. This is a runtime smoke test, not gameplay E2E testing.
 name: Minecraft server smoke test
 
@@ -65,6 +65,47 @@ on:
         description: 'Seconds allowed for server startup'
         type: number
         required: true
+        default: 600
+
+  workflow_call:
+    inputs:
+      server_type:
+        description: 'paper, spigot, or forge'
+        type: string
+        required: true
+      mc_version:
+        description: 'Exact Minecraft version to boot'
+        type: string
+        required: true
+      build_directory:
+        type: string
+        default: '.'
+      build_task:
+        type: string
+        default: ':build'
+      artifact_path:
+        type: string
+        default: ''
+      forge_build:
+        type: string
+        default: ''
+      build_java:
+        type: string
+        default: auto
+      server_java:
+        type: string
+        default: auto
+      expected_id:
+        type: string
+        default: ''
+      probe_artifact_path:
+        type: string
+        default: ''
+      probe_task:
+        type: string
+        default: integrationProbeJar
+      startup_timeout:
+        type: number
         default: 600
 
 jobs:
@@ -178,7 +219,12 @@ jobs:
           import glob, json, os, pathlib, re, shutil, sys, zipfile
           kind = os.environ['SERVER_TYPE']
           explicit = os.environ['ARTIFACT_PATH'].strip()
-          paths = [pathlib.Path(explicit)] if explicit else list((pathlib.Path(os.environ['BUILD_DIRECTORY']) / 'build/libs').glob('*.jar'))
+          # ':spigotModern:build' produces spigotModern/build/libs, not root build/libs.
+          task_parts = os.environ['BUILD_TASK'].strip(':').split(':')
+          task_project = pathlib.Path(os.environ['BUILD_DIRECTORY'])
+          if len(task_parts) > 1:
+              task_project = task_project.joinpath(*task_parts[:-1])
+          paths = [pathlib.Path(explicit)] if explicit else list((task_project / 'build/libs').glob('*.jar'))
           paths = [p for p in paths if p.is_file() and not p.is_symlink() and not re.search(r'-(?:sources|javadoc|tests)\.jar$', p.name)]
           candidates = []
           for p in paths:
@@ -381,12 +427,14 @@ jobs:
               print('Verified Forge ID in legacy FML server mod list:', expected)
           PY
           fi
-          grep -F 'Loaded 40 bundled structures' server-console.log || { echo 'Lorax did not initialize all assets' >&2; exit 1; }
+          if [[ "${GITHUB_REPOSITORY##*/}" == LoraxCustomTrees ]]; then
+            grep -F 'Loaded 40 bundled structures' server-console.log || { echo 'Lorax did not initialize all assets' >&2; exit 1; }
+          fi
           echo "STARTUP ONLY PASSED: $identity on $SERVER_TYPE $MC_VERSION"
       - name: Upload server and probe logs
         if: always()
         uses: https://data.forgejo.org/actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
         with:
-          name: minecraft-server-logs
+          name: minecraft-server-logs-${{ inputs.server_type }}-${{ inputs.mc_version }}
           path: mc-test-logs/
           if-no-files-found: warn
